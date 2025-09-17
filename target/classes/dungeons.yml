@@ -1,0 +1,447 @@
+# Configuración completa del sistema de mazmorras
+dungeon_system:
+  enable: true
+  max_instances: 20
+  instance_cleanup_time: 300  # 5 minutos
+  max_players_per_instance: 6
+  
+# Configuración de mazmorras
+dungeons:
+  # MAZMORRA PRINCIPIANTE
+  goblin_caves:
+    name: "<green>Cuevas de Goblins</green>"
+    description: "Una mazmorra para aventureros principiantes"
+    difficulty: "EASY"
+    recommended_level: 10
+    
+    # Configuración de jugadores
+    player_config:
+      min_players: 1
+      max_players: 4
+      recommended_players: 2
+      
+    # Ubicaciones
+    locations:
+      entrance:
+        world: "world"
+        x: 100
+        y: 64
+        z: 100
+      instance_spawn:
+        x: 0
+        y: 64
+        z: 0
+      exit:
+        x: 50
+        y: 64
+        z: 50
+        
+    # Configuración de tiempo
+    time_limits:
+      completion_time: 1800  # 30 minutos
+      speed_bonus_time: 900  # 15 minutos para bono
+      
+    # Oleadas de enemigos
+    waves:
+      wave_1:
+        name: "Exploradores Goblins"
+        enemies:
+          - entity: "ZOMBIE"
+            count: 5
+            level: 8
+            custom_name: "<green>Goblin Explorador</green>"
+          - entity: "SKELETON"
+            count: 2
+            level: 10
+            equipment:
+              weapon: "WOODEN_SWORD"
+        spawn_delay: 0
+        
+      wave_2:
+        name: "Guerreros Goblins"
+        enemies:
+          - entity: "ZOMBIE"
+            count: 8
+            level: 12
+            custom_name: "<yellow>Goblin Guerrero</yellow>"
+          - entity: "SPIDER"
+            count: 3
+            level: 10
+        spawn_delay: 30
+        
+      boss_wave:
+        name: "Jefe Goblin"
+        enemies:
+          - entity: "ZOMBIE"
+            count: 1
+            level: 20
+            custom_name: "<red>Jefe Goblin Supremo</red>"
+            health: 500
+            damage: 15
+            equipment:
+              weapon: "IRON_SWORD"
+              helmet: "IRON_HELMET"
+            abilities:
+              - "SUMMON_MINIONS"
+              - "RAGE_MODE"
+        spawn_delay: 60
+        
+    # Recompensas
+    rewards:
+      completion:
+        money: 500.0
+        experience: 200
+        skill_experience:
+          combat: 150
+        items:
+          - material: "IRON_SWORD"
+            amount: 1
+            enchantments:
+              - "SHARPNESS:2"
+            chance: 0.8
+          - material: "EMERALD"
+            amount: 5
+            chance: 1.0
+            
+      speed_bonus:
+        money: 200.0
+        experience: 100
+        
+      first_completion:
+        money: 1000.0
+        title: "Conquistador de Goblins"
+        
+    # Configuración
+    settings:
+      cooldown: 3600  # 1 hora
+      daily_limit: 5
+      entry_cost: 100.0
+      respawn_on_death: true
+      keep_inventory: false
+      
+  # MAZMORRA INTERMEDIA
+  undead_crypts:
+    name: "<gray>Criptas de los No-Muertos</gray>"
+    description: "Mazmorras infestadas de no-muertos para aventureros experimentados"
+    difficulty: "MEDIUM"
+    recommended_level: 25
+    
+    player_config:
+      min_players: 2
+      max_players: 5
+      recommended_players: 3
+      
+    locations:
+      entrance:
+        world: "world"
+        x: -200
+        y: 50
+        z: -200
+      instance_spawn:
+        x: 0
+        y: 64
+        z: 0
+        
+    time_limits:
+      completion_time: 2400  # 40 minutos
+      speed_bonus_time: 1500  # 25 minutos
+      
+    waves:
+      wave_1:
+        name: "Zombis Ancestrales"
+        enemies:
+          - entity: "ZOMBIE"
+            count: 10
+            level: 20
+            custom_name: "<gray>Zombi Ancestral</gray>"
+          - entity: "SKELETON"
+            count: 5
+            level: 22
+            equipment:
+              weapon: "BOW"
+        
+      wave_2:
+        name: "Espectros Sombríos"
+        enemies:
+          - entity: "WITHER_SKELETON"
+            count: 6
+            level: 25
+            custom_name: "<dark_gray>Espectro Sombrío</dark_gray>"
+          - entity: "ZOMBIE"
+            count: 8
+            level: 23
+            
+      wave_3:
+        name: "Guardianes de la Cripta"
+        enemies:
+          - entity: "IRON_GOLEM"
+            count: 2
+            level: 30
+            custom_name: "<blue>Guardián de Cripta</blue>"
+            health: 800
+            
+      boss_wave:
+        name: "Lich Supremo"
+        enemies:
+          - entity: "WITHER_SKELETON"
+            count: 1
+            level: 35
+            custom_name: "<dark_purple>Lich Supremo</dark_purple>"
+            health: 1200
+            damage: 25
+            abilities:
+              - "NECROMANCY"
+              - "DARK_MAGIC"
+              - "TELEPORT"
+              
+    rewards:
+      completion:
+        money: 1200.0
+        experience: 500
+        skill_experience:
+          combat: 400
+        items:
+          - material: "DIAMOND_SWORD"
+            amount: 1
+            enchantments:
+              - "SHARPNESS:3"
+              - "UNBREAKING:2"
+            chance: 0.6
+          - material: "EXPERIENCE_BOTTLE"
+            amount: 10
+            chance: 1.0
+            
+    settings:
+      cooldown: 7200  # 2 horas
+      daily_limit: 3
+      entry_cost: 500.0
+      
+  # MAZMORRA AVANZADA
+  nether_fortress:
+    name: "<red>Fortaleza Infernal</red>"
+    description: "La mazmorra más desafiante en las profundidades del Nether"
+    difficulty: "HARD"
+    recommended_level: 50
+    
+    player_config:
+      min_players: 4
+      max_players: 6
+      recommended_players: 5
+      
+    locations:
+      entrance:
+        world: "world_nether"
+        x: 0
+        y: 64
+        z: 0
+        
+    time_limits:
+      completion_time: 3600  # 1 hora
+      speed_bonus_time: 2700  # 45 minutos
+      
+    waves:
+      wave_1:
+        name: "Soldados Infernales"
+        enemies:
+          - entity: "BLAZE"
+            count: 8
+            level: 40
+          - entity: "WITHER_SKELETON"
+            count: 10
+            level: 42
+            
+      wave_2:
+        name: "Bestias del Nether"
+        enemies:
+          - entity: "GHAST"
+            count: 3
+            level: 45
+          - entity: "MAGMA_CUBE"
+            count: 15
+            level: 38
+            
+      wave_3:
+        name: "Guardianes de la Fortaleza"
+        enemies:
+          - entity: "WITHER_SKELETON"
+            count: 6
+            level: 50
+            custom_name: "<red>Guardián Infernal</red>"
+            health: 1000
+            equipment:
+              weapon: "NETHERITE_SWORD"
+              
+      boss_wave:
+        name: "Señor del Nether"
+        enemies:
+          - entity: "WITHER"
+            count: 1
+            level: 60
+            custom_name: "<dark_red>Señor del Nether Eterno</dark_red>"
+            health: 2500
+            damage: 40
+            abilities:
+              - "WITHER_SKULLS"
+              - "EXPLOSIVE_RAGE"
+              - "NETHER_PORTAL"
+              
+    rewards:
+      completion:
+        money: 3000.0
+        experience: 1500
+        skill_experience:
+          combat: 1000
+        items:
+          - material: "NETHERITE_SWORD"
+            amount: 1
+            enchantments:
+              - "SHARPNESS:4"
+              - "FIRE_ASPECT:2"
+              - "UNBREAKING:3"
+            chance: 0.4
+          - material: "NETHERITE_INGOT"
+            amount: 3
+            chance: 0.8
+            
+      legendary_drops:
+        - material: "NETHERITE_CHESTPLATE"
+          amount: 1
+          chance: 0.1
+          enchantments:
+            - "PROTECTION:4"
+            - "FIRE_PROTECTION:4"
+            - "UNBREAKING:3"
+          name: "<red>Coraza del Señor del Nether</red>"
+          
+    settings:
+      cooldown: 21600  # 6 horas
+      daily_limit: 1
+      entry_cost: 2000.0
+      
+  # MAZMORRA ESPECIAL - RAID
+  dragon_lair:
+    name: "<dark_purple>Guarida del Dragón</dark_purple>"
+    description: "Raid épico contra el Dragón Ancestral"
+    difficulty: "LEGENDARY"
+    recommended_level: 75
+    
+    player_config:
+      min_players: 6
+      max_players: 10
+      recommended_players: 8
+      
+    locations:
+      entrance:
+        world: "world_the_end"
+        x: 100
+        y: 64
+        z: 100
+        
+    time_limits:
+      completion_time: 5400  # 1.5 horas
+      speed_bonus_time: 3600  # 1 hora
+      
+    phases:
+      phase_1:
+        name: "Guardianes Dracoliches"
+        objectives:
+          - "Derrota a los 4 Guardianes Dracoliches"
+        enemies:
+          - entity: "WITHER_SKELETON"
+            count: 4
+            level: 60
+            custom_name: "<purple>Dracoliche Guardián</purple>"
+            health: 1500
+            abilities: ["NECROMANCY", "DRAGON_BREATH"]
+            
+      phase_2:
+        name: "Despertar del Dragón"
+        objectives:
+          - "Rompe los cristales de poder"
+          - "Despierta al dragón"
+        mechanics:
+          - "crystal_destruction"
+          - "dragon_awakening"
+          
+      final_phase:
+        name: "Batalla Final"
+        enemies:
+          - entity: "ENDER_DRAGON"
+            count: 1
+            level: 100
+            custom_name: "<dark_purple>Bahamut, Dragón del Apocalipsis</dark_purple>"
+            health: 5000
+            damage: 60
+            abilities:
+              - "VOID_BREATH"
+              - "ENDER_STORM"
+              - "DIMENSIONAL_RIFT"
+              - "APOCALYPSE_ROAR"
+              
+    rewards:
+      completion:
+        money: 10000.0
+        experience: 5000
+        items:
+          - material: "DRAGON_EGG"
+            amount: 1
+            name: "<dark_purple>Huevo de Bahamut</dark_purple>"
+          - material: "ELYTRA"
+            amount: 1
+            enchantments:
+              - "UNBREAKING:5"
+              - "MENDING:1"
+            name: "<dark_purple>Alas del Apocalipsis</dark_purple>"
+            
+      legendary_rewards:
+        - material: "NETHERITE_SWORD"
+          chance: 0.2
+          enchantments:
+            - "SHARPNESS:6"
+            - "UNBREAKING:5"
+            - "LOOTING:4"
+            - "FIRE_ASPECT:3"
+          name: "<dark_purple>Dracofang</dark_purple>"
+          
+    settings:
+      cooldown: 604800  # 1 semana
+      weekly_limit: 1
+      entry_cost: 10000.0
+      requires_quest: "dragon_challenger"
+
+# Configuración de mecánicas especiales
+dungeon_mechanics:
+  crystal_destruction:
+    name: "Destrucción de Cristales"
+    description: "Los jugadores deben destruir cristales para continuar"
+    crystal_health: 200
+    crystal_count: 6
+    
+  dragon_awakening:
+    name: "Despertar del Dragón"
+    description: "Secuencia cinemática del despertar"
+    duration: 30
+    
+  environmental_hazards:
+    lava_pits:
+      damage: 10
+      interval: 2
+    poison_gas:
+      effect: "POISON"
+      level: 2
+      duration: 10
+    lightning_strikes:
+      damage: 25
+      warning_time: 3
+
+# Progreso de jugadores
+player_progress: {}
+# Structure:
+# uuid:
+#   completed_dungeons:
+#     goblin_caves:
+#       completions: 5
+#       best_time: 720
+#       last_completion: timestamp
+#   current_instance: "dungeon_id"
+#   weekly_completions: 2

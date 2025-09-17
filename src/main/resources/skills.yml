@@ -1,0 +1,301 @@
+# MKSurvival Skills Configuration - Complete RPG System
+
+# ===========================================
+# SKILL SYSTEM CONFIGURATION
+# ===========================================
+skill_system:
+  # General settings
+  max_level: 100
+  exp_curve_multiplier: 1.2
+  base_exp_required: 100
+  
+  # Bonus calculation
+  bonus_chance_per_level: 0.01  # 1% per level
+  max_bonus_chance: 0.5         # 50% maximum
+  
+  # Double drop system
+  double_drop:
+    base_chance: 0.05
+    level_bonus: 0.002
+    max_chance: 0.4
+
+# ===========================================
+# INDIVIDUAL SKILL CONFIGURATIONS
+# ===========================================
+skills:
+  # MINING SKILL
+  mining:
+    name: "Minería"
+    description: "Mejora tus habilidades de extracción de minerales"
+    max_level: 100
+    
+    # Experience sources
+    experience_sources:
+      STONE: 1
+      COBBLESTONE: 1
+      COAL_ORE: 3
+      IRON_ORE: 5
+      GOLD_ORE: 8
+      LAPIS_ORE: 6
+      REDSTONE_ORE: 4
+      DIAMOND_ORE: 15
+      EMERALD_ORE: 12
+      ANCIENT_DEBRIS: 25
+      NETHER_QUARTZ_ORE: 4
+      NETHER_GOLD_ORE: 7
+      OBSIDIAN: 2
+      
+    # Level-based bonuses
+    bonuses:
+      10:  # Level 10
+        - type: "double_drop_chance"
+          value: 0.1
+        - type: "mining_speed"
+          value: 1.1
+      25:
+        - type: "rare_ore_chance"
+          value: 0.05
+        - type: "fortune_effect"
+          value: 1
+      50:
+        - type: "auto_smelt_chance"
+          value: 0.2
+        - type: "vein_miner"
+          max_blocks: 5
+      75:
+        - type: "treasure_finder"
+          value: 0.1
+      100:
+        - type: "legendary_miner"
+          description: "Chance de encontrar minerales únicos"
+  
+  # COMBAT SKILL
+  combat:
+    name: "Combate"
+    description: "Maestría en el arte de la guerra"
+    max_level: 100
+    
+    experience_sources:
+      ZOMBIE: 2
+      SKELETON: 3
+      CREEPER: 4
+      SPIDER: 2
+      ENDERMAN: 10
+      WITHER_SKELETON: 15
+      BLAZE: 8
+      GHAST: 12
+      PIGLIN_BRUTE: 10
+      ENDER_DRAGON: 100
+      WITHER: 75
+      
+    bonuses:
+      10:
+        - type: "damage_increase"
+          value: 1.1
+      20:
+        - type: "critical_chance"
+          value: 0.1
+      35:
+        - type: "combo_system"
+          max_combo: 5
+      50:
+        - type: "armor_penetration"
+          value: 0.2
+      65:
+        - type: "life_steal"
+          value: 0.1
+      80:
+        - type: "berserker_mode"
+          trigger_health: 0.3
+      100:
+        - type: "weapon_master"
+          description: "Dominio completo de todas las armas"
+  
+  # ALCHEMY SKILL
+  alchemy:
+    name: "Alquimia"
+    description: "Arte de crear pociones y encantamientos"
+    max_level: 100
+    
+    experience_sources:
+      POTION_BREW: 5
+      ENCHANT_ITEM: 3
+      REPAIR_ITEM: 2
+      ANVIL_USE: 1
+      
+    bonuses:
+      15:
+        - type: "potion_duration"
+          value: 1.2
+      30:
+        - type: "enchant_bonus"
+          value: 1
+      45:
+        - type: "brew_efficiency"
+          value: 0.8  # 20% less ingredients
+      60:
+        - type: "rare_potion_chance"
+          value: 0.1
+      75:
+        - type: "transmutation"
+          description: "Convierte materiales básicos en valiosos"
+      90:
+        - type: "philosopher_stone"
+          description: "Crea oro a partir de hierro"
+      100:
+        - type: "grand_alchemist"
+          description: "Maestro supremo de la alquimia"
+  
+  # FORAGING SKILL
+  foraging:
+    name: "Silvicultura"
+    description: "Recolección y cultivo de recursos naturales"
+    max_level: 100
+    
+    experience_sources:
+      # Tala de árboles
+      OAK_LOG: 1
+      BIRCH_LOG: 1
+      SPRUCE_LOG: 1
+      JUNGLE_LOG: 2
+      ACACIA_LOG: 1
+      DARK_OAK_LOG: 2
+      
+      # Cultivos
+      WHEAT: 1
+      CARROTS: 1
+      POTATOES: 1
+      BEETROOTS: 1
+      SUGAR_CANE: 1
+      MELON: 2
+      PUMPKIN: 2
+      
+      # Pesca
+      COD: 2
+      SALMON: 3
+      TROPICAL_FISH: 4
+      PUFFERFISH: 5
+      
+    bonuses:
+      10:
+        - type: "tree_feller"
+          description: "Tala árboles completos"
+      25:
+        - type: "crop_growth_boost"
+          value: 1.5
+      40:
+        - type: "rare_seed_chance"
+          value: 0.1
+      55:
+        - type: "fishing_luck"
+          value: 2
+      70:
+        - type: "ancient_tree_chance"
+          value: 0.05
+      85:
+        - type: "golden_apple_chance"
+          value: 0.02
+      100:
+        - type: "nature_master"
+          description: "Control completo sobre la naturaleza"
+
+# ===========================================
+# SKILL INTERACTIONS AND SYNERGIES
+# ===========================================
+skill_synergies:
+  # Combinaciones de habilidades que dan bonos extra
+  miner_alchemist:
+    required_skills:
+      mining: 50
+      alchemy: 50
+    bonus:
+      type: "ore_transmutation"
+      description: "Convierte minerales comunes en raros"
+      chance: 0.05
+      
+  warrior_miner:
+    required_skills:
+      combat: 40
+      mining: 40
+    bonus:
+      type: "battle_pickaxe"
+      description: "Tu pico hace daño en combate"
+      damage_multiplier: 1.5
+      
+  alchemist_forager:
+    required_skills:
+      alchemy: 45
+      foraging: 45
+    bonus:
+      type: "natural_brewing"
+      description: "Usa ingredientes naturales para pociones únicas"
+      rare_ingredient_chance: 0.1
+
+# ===========================================
+# SKILL CHALLENGES AND ACHIEVEMENTS
+# ===========================================
+skill_challenges:
+  mining_challenges:
+    coal_miner:
+      description: "Mina 1000 carbones"
+      requirement: 1000
+      reward_exp: 500
+      reward_money: 1000
+    diamond_hunter:
+      description: "Encuentra 100 diamantes"
+      requirement: 100
+      reward_exp: 2000
+      reward_money: 5000
+      
+  combat_challenges:
+    mob_slayer:
+      description: "Derrota 500 mobs hostiles"
+      requirement: 500
+      reward_exp: 1000
+      reward_money: 2000
+    boss_hunter:
+      description: "Derrota 10 jefes"
+      requirement: 10
+      reward_exp: 3000
+      reward_money: 10000
+      
+  alchemy_challenges:
+    potion_master:
+      description: "Crea 200 pociones"
+      requirement: 200
+      reward_exp: 800
+      reward_money: 1500
+    enchanter:
+      description: "Encanta 100 objetos"
+      requirement: 100
+      reward_exp: 1200
+      reward_money: 2500
+      
+  foraging_challenges:
+    lumberjack:
+      description: "Tala 1000 troncos"
+      requirement: 1000
+      reward_exp: 600
+      reward_money: 1200
+    master_farmer:
+      description: "Cosecha 2000 cultivos"
+      requirement: 2000
+      reward_exp: 1000
+      reward_money: 2000
+
+# ===========================================
+# PLAYER DATA STORAGE
+# ===========================================
+players: {}
+# Structure for player data:
+# uuid:
+#   skills:
+#     mining:
+#       level: 45
+#       experience: 12500
+#       challenges_completed: ["coal_miner"]
+#     combat:
+#       level: 32
+#       experience: 8200
+#   total_skill_points: 77
+#   prestige_level: 0

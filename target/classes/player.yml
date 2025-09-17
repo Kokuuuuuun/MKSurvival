@@ -1,0 +1,467 @@
+# Sistema completo de jugadores - MKSurvival
+
+# ===========================================
+# CONFIGURACIÓN DEL SISTEMA DE JUGADORES
+# ===========================================
+player_system:
+  enable: true
+  
+  # Configuración de datos de jugador
+  data_management:
+    auto_save_interval: 300  # 5 minutos
+    max_backup_files: 5
+    async_loading: true
+    
+  # Sistema de perfiles
+  profile_system:
+    enable: true
+    track_statistics: true
+    track_preferences: true
+    track_achievements: true
+    
+# ===========================================
+# SISTEMA DE HOGARES (HOMES)
+# ===========================================
+home_system:
+  enable: true
+  
+  # Configuración de hogares
+  home_settings:
+    max_homes_per_player: 5
+    home_teleport_delay: 3  # segundos
+    home_teleport_cost: 0.0
+    allow_cross_world: true
+    
+  # Configuración por rango/nivel
+  rank_based_homes:
+    default: 3
+    vip: 5
+    premium: 8
+    admin: 15
+    
+  # Cooldowns
+  cooldowns:
+    teleport_cooldown: 30  # segundos
+    set_home_cooldown: 5
+    
+# ===========================================
+# SISTEMA DE TELETRANSPORTE (TPA)
+# ===========================================
+teleport_system:
+  enable: true
+  
+  # Configuración de TPA
+  tpa_settings:
+    request_expire_time: 60  # segundos
+    teleport_delay: 5  # segundos
+    teleport_cost: 0.0
+    allow_cross_world: true
+    
+  # Restricciones
+  restrictions:
+    tpa_in_combat: false
+    combat_time: 15  # segundos
+    max_pending_requests: 5
+    
+  # Configuración de warps
+  warp_system:
+    enable: true
+    max_player_warps: 3
+    warp_creation_cost: 1000.0
+    public_warp_cost: 5000.0
+    
+# ===========================================
+# SISTEMA DE ESTADÍSTICAS
+# ===========================================
+statistics:
+  enable: true
+  
+  # Estadísticas rastreadas
+  tracked_stats:
+    # Actividades básicas
+    blocks_broken: true
+    blocks_placed: true
+    distance_traveled: true
+    time_played: true
+    
+    # Combate
+    mobs_killed: true
+    players_killed: true
+    deaths: true
+    damage_dealt: true
+    damage_taken: true
+    
+    # Economía
+    money_earned: true
+    money_spent: true
+    trades_completed: true
+    
+    # Habilidades
+    items_crafted: true
+    items_enchanted: true
+    potions_brewed: true
+    fish_caught: true
+    crops_harvested: true
+    
+    # Social
+    chat_messages: true
+    commands_used: true
+    friends_added: true
+    
+  # Recompensas por hitos
+  milestone_rewards:
+    blocks_broken:
+      1000:
+        money: 500.0
+        message: "<green>¡Has roto 1,000 bloques!</green>"
+      10000:
+        money: 2500.0
+        message: "<gold>¡Maestro destructor! 10,000 bloques rotos!</gold>"
+        title: "Demoledor"
+      100000:
+        money: 15000.0
+        message: "<rainbow>¡INCREÍBLE! 100,000 bloques destruidos!</rainbow>"
+        title: "Devastador Legendario"
+        
+    mobs_killed:
+      500:
+        money: 750.0
+        message: "<red>¡Has eliminado 500 criaturas!</red>"
+      5000:
+        money: 5000.0
+        message: "<dark_red>¡Cazador legendario! 5,000 eliminaciones!</dark_red>"
+        title: "Cazador de Leyenda"
+        
+    time_played:
+      36000:  # 10 horas
+        money: 1000.0
+        message: "<yellow>¡Has jugado 10 horas!</yellow>"
+      360000:  # 100 horas
+        money: 10000.0
+        message: "<gold>¡Veterano! 100 horas de juego!</gold>"
+        title: "Veterano"
+        
+# ===========================================
+# SISTEMA DE PREFERENCIAS
+# ===========================================
+preferences:
+  enable: true
+  
+  # Preferencias de chat
+  chat_preferences:
+    enable_chat: true
+    enable_private_messages: true
+    enable_faction_chat: true
+    chat_filter_level: "medium"
+    
+  # Preferencias de notificaciones
+  notification_preferences:
+    tpa_requests: true
+    achievement_notifications: true
+    level_up_notifications: true
+    friend_login_notifications: true
+    
+  # Preferencias de juego
+  gameplay_preferences:
+    auto_pickup: false
+    show_coordinates: true
+    show_health_bars: true
+    enable_sound_effects: true
+    
+  # Preferencias de privacidad
+  privacy_preferences:
+    show_online_status: true
+    allow_teleport_requests: true
+    show_statistics: true
+    public_profile: true
+    
+# ===========================================
+# SISTEMA DE AMIGOS
+# ===========================================
+friend_system:
+  enable: true
+  
+  # Configuración de amigos
+  friend_settings:
+    max_friends: 50
+    friend_request_expire: 86400  # 24 horas
+    offline_message_storage: 10
+    
+  # Beneficios de amistad
+  friend_benefits:
+    teleport_to_friends: true
+    friend_teleport_cost: 0.5  # 50% de descuento
+    shared_home_access: true
+    friend_chat: true
+    
+# ===========================================
+# SISTEMA DE MODERACIÓN
+# ===========================================
+moderation:
+  enable: true
+  
+  # Sistema de baneos
+  ban_system:
+    enable: true
+    max_ban_duration: 2592000  # 30 días
+    temp_ban_reasons:
+      - "Griefing"
+      - "Spam"
+      - "Comportamiento tóxico"
+      - "Uso de hacks"
+      
+  # Sistema de silenciamiento
+  mute_system:
+    enable: true
+    max_mute_duration: 604800  # 7 días
+    mute_reasons:
+      - "Spam en chat"
+      - "Lenguaje inapropiado"
+      - "Acoso"
+      
+  # Sistema de advertencias
+  warning_system:
+    enable: true
+    max_warnings: 5
+    warning_expire_days: 30
+    auto_punishment:
+      3: "mute_1h"
+      5: "temp_ban_24h"
+      
+# ===========================================
+# SISTEMA DE RECOMPENSAS
+# ===========================================
+reward_system:
+  enable: true
+  
+  # Recompensas por tiempo de juego
+  playtime_rewards:
+    enable: true
+    reward_interval: 3600  # cada hora
+    base_reward: 100.0
+    bonus_weekend: 1.5  # 50% extra los fines de semana
+    
+    # Recompensas especiales por tiempo acumulado
+    cumulative_rewards:
+      daily_login:
+        money: 200.0
+        message: "<green>¡Recompensa de login diario!</green>"
+      weekly_playtime:
+        money: 1500.0
+        message: "<gold>¡Bonus semanal de tiempo de juego!</gold>"
+      monthly_dedication:
+        money: 10000.0
+        title: "Jugador Dedicado"
+        message: "<rainbow>¡Recompensa mensual por dedicación!</rainbow>"
+        
+  # Sistema de rachas
+  streak_system:
+    enable: true
+    daily_login_streak:
+      max_streak: 30
+      rewards:
+        7:  # 1 semana
+          money: 1000.0
+          message: "<yellow>¡Racha de 7 días!</yellow>"
+        30:  # 1 mes
+          money: 10000.0
+          title: "Asiduo"
+          message: "<gold>¡Racha perfecta de 30 días!</gold>"
+          
+# ===========================================
+# SISTEMA DE NIVELES DE JUGADOR
+# ===========================================
+player_levels:
+  enable: true
+  
+  # Configuración de experiencia
+  experience_config:
+    base_exp_required: 1000
+    exp_curve: 1.5
+    max_level: 100
+    
+  # Fuentes de experiencia
+  exp_sources:
+    quest_completion: 100
+    skill_level_up: 50
+    achievement_unlock: 75
+    daily_login: 25
+    
+  # Recompensas por nivel
+  level_rewards:
+    every_level:
+      money: 500.0
+    milestone_levels:
+      10:
+        money: 2000.0
+        title: "Novato Experimentado"
+      25:
+        money: 5000.0
+        title: "Aventurero"
+      50:
+        money: 15000.0
+        title: "Veterano"
+      75:
+        money: 30000.0
+        title: "Maestro"
+      100:
+        money: 100000.0
+        title: "Leyenda"
+        
+# ===========================================
+# CONFIGURACIÓN DE EVENTOS
+# ===========================================
+event_tracking:
+  # Eventos de conexión
+  connection_events:
+    track_login: true
+    track_logout: true
+    track_playtime: true
+    
+  # Eventos de actividad
+  activity_events:
+    track_movement: true
+    track_interactions: true
+    track_commands: true
+    
+  # Eventos sociales
+  social_events:
+    track_chat: true
+    track_friendships: true
+    track_trades: true
+    
+# ===========================================
+# INTEGRACIÓN CON OTROS SISTEMAS
+# ===========================================
+system_integration:
+  # Integración con economía
+  economy_integration:
+    track_transactions: true
+    daily_allowance: 100.0
+    
+  # Integración con facciones
+  faction_integration:
+    track_faction_activity: true
+    faction_member_benefits: true
+    
+  # Integración con habilidades
+  skill_integration:
+    track_skill_usage: true
+    skill_bonus_rewards: true
+    
+# ===========================================
+# DATOS DE JUGADORES
+# ===========================================
+players: {}
+# Estructura completa:
+# uuid:
+#   # Información básica
+#   name: "PlayerName"
+#   first_join: timestamp
+#   last_join: timestamp
+#   last_logout: timestamp
+#   total_playtime: 3600000  # milisegundos
+#   ip_address: "192.168.1.1"
+#   
+#   # Sistema de niveles
+#   player_level: 25
+#   player_experience: 15000
+#   
+#   # Hogares
+#   homes:
+#     casa:
+#       world: "world"
+#       x: 100.5
+#       y: 64.0
+#       z: -50.3
+#       yaw: 180.0
+#       pitch: 0.0
+#   
+#   # Warps personales
+#   warps:
+#     tienda:
+#       world: "world"
+#       x: 500.0
+#       y: 64.0
+#       z: 300.0
+#       public: true
+#       cost: 50.0
+#   
+#   # Amigos
+#   friends:
+#     - "friend_uuid_1"
+#     - "friend_uuid_2"
+#   friend_requests:
+#     - uuid: "requester_uuid"
+#       timestamp: 1234567890
+#   
+#   # Preferencias
+#   preferences:
+#     chat_enabled: true
+#     private_messages: true
+#     tpa_requests: true
+#     notifications: true
+#     auto_pickup: false
+#   
+#   # Estadísticas
+#   statistics:
+#     blocks_broken: 15000
+#     blocks_placed: 8000
+#     mobs_killed: 2500
+#     players_killed: 45
+#     deaths: 23
+#     distance_traveled: 150000
+#     money_earned: 50000.0
+#     money_spent: 35000.0
+#     time_played: 120  # horas
+#   
+#   # Moderación
+#   moderation:
+#     warnings: []
+#     mutes: []
+#     bans: []
+#     last_violation: timestamp
+#   
+#   # Racha de login
+#   login_streak:
+#     current_streak: 7
+#     best_streak: 15
+#     last_login_date: "2024-01-15"
+#   
+#   # Configuración temporal
+#   temp_data:
+#     combat_tag: false
+#     last_teleport: timestamp
+#     pending_tpa_requests: []
+
+# ===========================================
+# CONFIGURACIÓN DE MENSAJES
+# ===========================================
+messages:
+  # Mensajes de hogares
+  home_set: "<green>[Hogar]</green> <yellow>Hogar '{name}' establecido!</yellow>"
+  home_deleted: "<yellow>[Hogar]</yellow> <gray>Hogar '{name}' eliminado.</gray>"
+  home_teleported: "<green>[Hogar]</green> <yellow>Teletransportado a tu hogar '{name}'!</yellow>"
+  home_not_found: "<red>[Hogar]</red> <yellow>Hogar '{name}' no encontrado.</yellow>"
+  max_homes_reached: "<red>[Hogar]</red> <yellow>Has alcanzado el límite de hogares ({limit}).</yellow>"
+  
+  # Mensajes de TPA
+  tpa_request_sent: "<green>[TP]</green> <yellow>Solicitud enviada a {player}.</yellow>"
+  tpa_request_received: "<blue>[TP]</blue> <yellow>{player} quiere teletransportarse a ti. /tpaccept o /tpdeny</yellow>"
+  tpa_accepted: "<green>[TP]</green> <yellow>Solicitud aceptada. Teletransportando...</yellow>"
+  tpa_denied: "<red>[TP]</red> <yellow>Solicitud denegada.</yellow>"
+  
+  # Mensajes de amigos
+  friend_added: "<green>[Amigos]</green> <yellow>Has agregado a {player} como amigo!</yellow>"
+  friend_removed: "<yellow>[Amigos]</yellow> <gray>Has eliminado a {player} de tus amigos.</gray>"
+  friend_request_sent: "<green>[Amigos]</green> <yellow>Solicitud de amistad enviada a {player}.</yellow>"
+  friend_online: "<green>[Amigos]</green> <yellow>Tu amigo {player} se ha conectado!</yellow>"
+  
+  # Mensajes de nivel
+  level_up: "<gold>[Nivel]</gold> <yellow>¡Has subido al nivel {level}!</yellow>"
+  milestone_reached: "<rainbow>[Hito]</rainbow> <yellow>{message}</yellow>"
+  
+  # Mensajes de moderación
+  warning_received: "<yellow>[Advertencia]</yellow> <red>Has recibido una advertencia: {reason}</red>"
+  muted: "<red>[Silenciado]</red> <yellow>Has sido silenciado por {duration}. Razón: {reason}</yellow>"
+  banned: "<red>[Baneado]</red> <yellow>Has sido baneado por {duration}. Razón: {reason}</yellow>"

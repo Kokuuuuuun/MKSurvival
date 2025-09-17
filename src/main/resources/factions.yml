@@ -1,0 +1,345 @@
+# Sistema completo de facciones - MKSurvival
+
+# ===========================================
+# CONFIGURACIÓN DEL SISTEMA DE FACCIONES
+# ===========================================
+faction_system:
+  enable: true
+  max_factions: 100
+  
+  # Configuración de miembros
+  member_limits:
+    max_members_per_faction: 20
+    max_officers_per_faction: 5
+    max_allies_per_faction: 5
+    max_enemies_per_faction: 10
+    
+  # Sistema de poder
+  power_system:
+    enable: true
+    power_per_player: 10
+    max_power_per_player: 20
+    power_loss_per_death: 2
+    power_regen_per_hour: 1
+    overclaim_threshold: 0.9  # 90% poder requerido
+    
+  # Costos económicos
+  costs:
+    create_faction: 5000.0
+    claim_territory: 1000.0
+    war_declaration: 2000.0
+    ally_invitation: 500.0
+    
+  # Sistema de guerras
+  war_system:
+    enable: true
+    war_duration_hours: 24
+    war_cooldown_hours: 48
+    max_concurrent_wars: 3
+    truce_cost: 5000.0
+    
+# ===========================================
+# CONFIGURACIÓN DE TERRITORIOS
+# ===========================================
+territory_system:
+  enable: true
+  
+  # Configuración de claims
+  claiming:
+    min_claim_size: 16  # chunks
+    max_claim_size: 64  # chunks
+    claims_per_faction: 10
+    border_buffer: 3  # chunks entre facciones
+    
+  # Protecciones
+  protections:
+    block_break: true
+    block_place: true
+    container_access: true
+    entity_damage: true
+    item_pickup: true
+    
+  # Configuración especial
+  special_zones:
+    spawn_protection_radius: 200  # bloques
+    warzone_size: 100  # chunks
+    wilderness_pvp: true
+    
+# ===========================================
+# RANGOS Y PERMISOS
+# ===========================================
+ranks:
+  leader:
+    name: "Líder"
+    permissions:
+      - "faction.disband"
+      - "faction.invite"
+      - "faction.kick"
+      - "faction.promote"
+      - "faction.demote"
+      - "faction.claim"
+      - "faction.unclaim"
+      - "faction.ally"
+      - "faction.enemy"
+      - "faction.war"
+      - "faction.description"
+      - "faction.withdraw"
+    prefix: "<gold>★</gold>"
+    
+  officer:
+    name: "Oficial"
+    permissions:
+      - "faction.invite"
+      - "faction.kick"
+      - "faction.claim"
+      - "faction.unclaim"
+      - "faction.ally"
+    prefix: "<yellow>●</yellow>"
+    
+  member:
+    name: "Miembro"
+    permissions:
+      - "faction.home"
+    prefix: "<green>•</green>"
+    
+  recruit:
+    name: "Recluta"
+    permissions:
+      - "faction.chat"
+    prefix: "<gray>○</gray>"
+    
+# ===========================================
+# SISTEMA DE RELACIONES
+# ===========================================
+relations:
+  ally:
+    name: "Aliado"
+    color: "<green>"
+    friendly_fire: false
+    can_build: false
+    can_access_containers: false
+    
+  neutral:
+    name: "Neutral"
+    color: "<white>"
+    friendly_fire: true
+    can_build: false
+    can_access_containers: false
+    
+  enemy:
+    name: "Enemigo"
+    color: "<red>"
+    friendly_fire: true
+    can_build: false
+    can_access_containers: false
+    enemy_damage_bonus: 1.1
+    
+  truce:
+    name: "Tregua"
+    color: "<yellow>"
+    friendly_fire: false
+    duration_hours: 72
+    
+# ===========================================
+# SISTEMA ECONÓMICO DE FACCIONES
+# ===========================================
+economy:
+  enable: true
+  
+  # Banco de facciones
+  faction_bank:
+    enable: true
+    max_balance: 1000000.0
+    daily_tax_rate: 0.001  # 0.1% diario
+    
+  # Salarios por actividades
+  activity_rewards:
+    territory_claim: 100.0
+    enemy_kill: 50.0
+    war_victory: 2000.0
+    successful_defense: 500.0
+    
+  # Sistema de impuestos
+  taxation:
+    member_tax_rate: 0.02  # 2% de ganancias
+    territory_maintenance: 10.0  # por chunk por día
+    
+# ===========================================
+# EVENTOS Y COMPETENCIAS
+# ===========================================
+events:
+  # Guerras programadas
+  scheduled_wars:
+    enable: true
+    frequency_days: 7
+    duration_hours: 4
+    participation_reward: 1000.0
+    victory_reward: 5000.0
+    
+  # Competencias de facciones
+  competitions:
+    enable: true
+    
+    weekly_challenges:
+      territory_expansion:
+        name: "Expansión Territorial"
+        objective: "Reclama el mayor número de territorios"
+        duration_days: 7
+        rewards:
+          first: 10000.0
+          second: 5000.0
+          third: 2500.0
+          
+      wealth_accumulation:
+        name: "Acumulación de Riqueza"
+        objective: "Acumula la mayor cantidad de dinero"
+        duration_days: 7
+        
+      combat_prowess:
+        name: "Destreza en Combate"
+        objective: "Obtén la mayor cantidad de kills PvP"
+        duration_days: 7
+        
+  # Eventos especiales
+  special_events:
+    faction_raids:
+      name: "Incursiones de Facción"
+      description: "Eventos PvE cooperativos para facciones"
+      min_participants: 5
+      rewards_multiplier: 2.0
+      
+    territory_wars:
+      name: "Guerras Territoriales"
+      description: "Batallas masivas por control territorial"
+      duration_hours: 2
+      
+# ===========================================
+# SISTEMA DE LOGROS DE FACCIONES
+# ===========================================
+achievements:
+  faction_founder:
+    name: "Fundador de Facción"
+    description: "Crea tu primera facción"
+    reward_money: 1000.0
+    
+  territory_master:
+    name: "Maestro Territorial"
+    description: "Reclama 10 territorios"
+    requirement: 10
+    reward_money: 5000.0
+    
+  war_veteran:
+    name: "Veterano de Guerra"
+    description: "Participa en 5 guerras"
+    requirement: 5
+    reward_money: 3000.0
+    
+  diplomatic_genius:
+    name: "Genio Diplomático"
+    description: "Mantén 3 alianzas simultáneamente"
+    requirement: 3
+    reward_money: 2500.0
+    
+  faction_destroyer:
+    name: "Destructor de Facciones"
+    description: "Causa la disolución de 3 facciones enemigas"
+    requirement: 3
+    reward_money: 10000.0
+    
+# ===========================================
+# CONFIGURACIÓN DE MENSAJES
+# ===========================================
+messages:
+  # Creación y gestión
+  faction_created: "<green>[Facciones]</green> <yellow>¡Facción {faction} creada exitosamente!</yellow>"
+  faction_disbanded: "<red>[Facciones]</red> <gray>La facción {faction} ha sido disuelta.</gray>"
+  
+  # Miembros
+  player_joined: "<green>[Facciones]</green> <yellow>{player} se ha unido a {faction}!</yellow>"
+  player_left: "<yellow>[Facciones]</yellow> <gray>{player} ha abandonado {faction}.</gray>"
+  player_kicked: "<red>[Facciones]</red> <yellow>{player} ha sido expulsado de {faction}.</yellow>"
+  
+  # Territorios
+  territory_claimed: "<green>[Facciones]</green> <yellow>Territorio reclamado para {faction}!</yellow>"
+  territory_lost: "<red>[Facciones]</red> <yellow>¡{faction} ha perdido territorio!</yellow>"
+  
+  # Relaciones
+  alliance_formed: "<green>[Facciones]</green> <yellow>¡Alianza formada entre {faction1} y {faction2}!</yellow>"
+  war_declared: "<red>[Facciones]</red> <yellow>¡{faction1} declara la guerra a {faction2}!</yellow>"
+  
+# ===========================================
+# DATOS DE FACCIONES
+# ===========================================
+factions: {}
+# Estructura:
+# faction_name:
+#   leader: "uuid"
+#   officers: ["uuid1", "uuid2"]
+#   members: ["uuid3", "uuid4"]
+#   recruits: ["uuid5"]
+#   allies: ["allied_faction"]
+#   enemies: ["enemy_faction"]
+#   power: 150
+#   max_power: 200
+#   bank_balance: 5000.0
+#   territory_claims: ["world:100:200", "world:101:200"]
+#   creation_date: timestamp
+#   description: "Descripción de la facción"
+#   home_location:
+#     world: "world"
+#     x: 100.0
+#     y: 64.0
+#     z: 100.0
+#   settings:
+#     open_recruitment: false
+#     friendly_fire: false
+#     public_home: false
+
+# ===========================================
+# CONFIGURACIÓN DE WARPS Y HOMES
+# ===========================================
+warp_system:
+  faction_homes:
+    enable: true
+    max_homes_per_faction: 3
+    home_teleport_delay: 5  # segundos
+    home_teleport_cost: 100.0
+    
+  faction_warps:
+    enable: true
+    max_warps_per_faction: 5
+    warp_creation_cost: 500.0
+    public_warp_cost: 1000.0
+    
+# ===========================================
+# CONFIGURACIÓN AVANZADA
+# ===========================================
+advanced_settings:
+  # Sistema de reputación
+  reputation_system:
+    enable: true
+    max_reputation: 1000
+    min_reputation: -1000
+    reputation_decay_rate: 1  # por día
+    
+  # Configuración de PvP
+  pvp_settings:
+    faction_pvp_enabled: true
+    ally_pvp_enabled: false
+    neutral_pvp_enabled: true
+    enemy_damage_bonus: 1.1
+    
+  # Sistema de espionaje
+  espionage_system:
+    enable: true
+    spy_cost: 1000.0
+    spy_duration_hours: 24
+    counter_espionage_cost: 1500.0
+    
+  # Configuración de raids
+  raid_system:
+    enable: true
+    raid_cooldown_hours: 168  # 1 semana
+    min_online_defenders: 3
+    raid_duration_hours: 2
+    raid_protection_hours: 24  # después de crear facción

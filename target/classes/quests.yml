@@ -1,0 +1,439 @@
+# MKSurvival Quests Configuration - Complete Quest System
+
+# ===========================================
+# QUEST SYSTEM SETTINGS
+# ===========================================
+quest_system:
+  max_active_quests: 8
+  daily_quest_limit: 5
+  weekly_quest_limit: 3
+  
+  # Quest generation settings
+  dynamic_generation:
+    enable: true
+    generation_interval: 300  # 5 minutes
+    max_generated_per_player: 10
+    
+  # Difficulty scaling
+  difficulty_scaling:
+    enable: true
+    player_level_factor: 1.2
+    skill_level_factor: 1.1
+
+# ===========================================
+# STATIC QUEST DEFINITIONS
+# ===========================================
+quests:
+  # BEGINNER QUESTS
+  welcome_quest:
+    name: "Bienvenido a MKSurvival"
+    description: "Completa las tareas básicas para familiarizarte con el servidor"
+    type: "tutorial"
+    difficulty: "easy"
+    objectives:
+      - type: "collect"
+        target: "OAK_LOG"
+        amount: 10
+        description: "Recolecta 10 troncos de roble"
+      - type: "craft"
+        target: "CRAFTING_TABLE"
+        amount: 1
+        description: "Crea una mesa de trabajo"
+      - type: "mine"
+        target: "STONE"
+        amount: 20
+        description: "Mina 20 piedras"
+    rewards:
+      money: 100.0
+      experience: 50
+      items:
+        - material: "IRON_PICKAXE"
+          amount: 1
+          name: "<green>Pico de Principiante</green>"
+    prerequisites: []
+    repeatable: false
+    
+  mining_basics:
+    name: "Minero Principiante"
+    description: "Aprende los fundamentos de la minería"
+    type: "skill_progression"
+    difficulty: "easy"
+    objectives:
+      - type: "mine"
+        target: "COAL_ORE"
+        amount: 15
+        description: "Extrae 15 minerales de carbón"
+      - type: "mine"
+        target: "IRON_ORE"
+        amount: 10
+        description: "Extrae 10 minerales de hierro"
+      - type: "smelt"
+        target: "IRON_INGOT"
+        amount: 10
+        description: "Funde 10 lingotes de hierro"
+    rewards:
+      money: 200.0
+      experience: 100
+      skill_experience:
+        mining: 200
+      items:
+        - material: "DIAMOND_PICKAXE"
+          amount: 1
+          enchantments:
+            - "EFFICIENCY:2"
+            - "UNBREAKING:1"
+    prerequisites: ["welcome_quest"]
+    
+  combat_training:
+    name: "Entrenamiento de Combate"
+    description: "Domina las habilidades básicas de combate"
+    type: "skill_progression"
+    difficulty: "easy"
+    objectives:
+      - type: "kill"
+        target: "ZOMBIE"
+        amount: 10
+        description: "Derrota 10 zombis"
+      - type: "kill"
+        target: "SKELETON"
+        amount: 8
+        description: "Derrota 8 esqueletos"
+      - type: "kill"
+        target: "SPIDER"
+        amount: 5
+        description: "Derrota 5 arañas"
+    rewards:
+      money: 150.0
+      experience: 80
+      skill_experience:
+        combat: 150
+      items:
+        - material: "IRON_SWORD"
+          amount: 1
+          enchantments:
+            - "SHARPNESS:2"
+    
+  # INTERMEDIATE QUESTS
+  advanced_miner:
+    name: "Minero Avanzado"
+    description: "Busca minerales raros en las profundidades"
+    type: "skill_progression"
+    difficulty: "medium"
+    objectives:
+      - type: "mine"
+        target: "GOLD_ORE"
+        amount: 20
+        description: "Extrae 20 minerales de oro"
+      - type: "mine"
+        target: "DIAMOND_ORE"
+        amount: 5
+        description: "Encuentra 5 diamantes"
+      - type: "reach_depth"
+        target: 16
+        description: "Alcanza el nivel Y 16 o inferior"
+    rewards:
+      money: 500.0
+      experience: 250
+      skill_experience:
+        mining: 400
+      items:
+        - material: "NETHERITE_PICKAXE"
+          amount: 1
+          enchantments:
+            - "EFFICIENCY:4"
+            - "FORTUNE:2"
+            - "UNBREAKING:3"
+    prerequisites: ["mining_basics"]
+    
+  monster_hunter:
+    name: "Cazador de Monstruos"
+    description: "Caza criaturas peligrosas para obtener recompensas"
+    type: "hunting"
+    difficulty: "medium"
+    objectives:
+      - type: "kill"
+        target: "CREEPER"
+        amount: 15
+        description: "Derrota 15 creepers"
+      - type: "kill"
+        target: "ENDERMAN"
+        amount: 3
+        description: "Derrota 3 endermen"
+      - type: "collect"
+        target: "GUNPOWDER"
+        amount: 20
+        description: "Recolecta 20 pólvora"
+    rewards:
+      money: 400.0
+      experience: 200
+      skill_experience:
+        combat: 300
+      items:
+        - material: "BOW"
+          amount: 1
+          enchantments:
+            - "POWER:3"
+            - "INFINITY:1"
+        - material: "ARROW"
+          amount: 64
+    
+  # ADVANCED QUESTS
+  nether_explorer:
+    name: "Explorador del Nether"
+    description: "Aventurate en las peligrosas tierras del Nether"
+    type: "exploration"
+    difficulty: "hard"
+    objectives:
+      - type: "enter_dimension"
+        target: "NETHER"
+        description: "Entra al Nether"
+      - type: "mine"
+        target: "NETHER_QUARTZ_ORE"
+        amount: 30
+        description: "Mina 30 minerales de cuarzo del Nether"
+      - type: "kill"
+        target: "BLAZE"
+        amount: 10
+        description: "Derrota 10 blazes"
+      - type: "collect"
+        target: "BLAZE_ROD"
+        amount: 8
+        description: "Recolecta 8 varas de blaze"
+    rewards:
+      money: 1000.0
+      experience: 500
+      skill_experience:
+        mining: 300
+        combat: 400
+      items:
+        - material: "NETHERITE_INGOT"
+          amount: 2
+        - material: "FIRE_RESISTANCE_POTION"
+          amount: 5
+    prerequisites: ["advanced_miner", "monster_hunter"]
+    
+  ender_challenger:
+    name: "Desafío del End"
+    description: "Enfrenta al Dragón del End en su propio territorio"
+    type: "boss_challenge"
+    difficulty: "legendary"
+    objectives:
+      - type: "enter_dimension"
+        target: "THE_END"
+        description: "Entra al End"
+      - type: "kill"
+        target: "ENDER_DRAGON"
+        amount: 1
+        description: "Derrota al Dragón del End"
+      - type: "collect"
+        target: "DRAGON_EGG"
+        amount: 1
+        description: "Obtiene el huevo de dragón"
+    rewards:
+      money: 5000.0
+      experience: 2000
+      skill_experience:
+        combat: 1000
+      items:
+        - material: "ELYTRA"
+          amount: 1
+        - material: "NETHERITE_SWORD"
+          amount: 1
+          enchantments:
+            - "SHARPNESS:5"
+            - "UNBREAKING:3"
+            - "LOOTING:3"
+      commands:
+        - "broadcast {player} ha derrotado al Dragón del End!"
+      title: "Asesino de Dragones"
+    prerequisites: ["nether_explorer"]
+    
+  # FACTION QUESTS
+  faction_founder:
+    name: "Fundador de Facción"
+    description: "Crea tu propia facción y recluta miembros"
+    type: "faction"
+    difficulty: "medium"
+    objectives:
+      - type: "create_faction"
+        description: "Crea una facción"
+      - type: "recruit_members"
+        amount: 5
+        description: "Recluta 5 miembros para tu facción"
+      - type: "claim_territory"
+        amount: 3
+        description: "Reclama 3 territorios"
+    rewards:
+      money: 2000.0
+      faction_power: 50
+      items:
+        - material: "BANNER"
+          amount: 1
+          name: "<gold>Estandarte de Facción</gold>"
+    
+  # DAILY QUESTS (Generated dynamically)
+  daily_mining:
+    name: "Minería Diaria"
+    description: "Extrae minerales para ganar recompensas diarias"
+    type: "daily"
+    difficulty: "easy"
+    objectives:
+      - type: "mine"
+        target: "RANDOM_ORE"
+        amount: "RANDOM_10_30"
+        description: "Mina {amount} minerales aleatorios"
+    rewards:
+      money: "RANDOM_50_200"
+      experience: "RANDOM_25_100"
+    reset_time: "daily"
+    
+  daily_combat:
+    name: "Combate Diario"
+    description: "Derrota mobs hostiles para obtener recompensas"
+    type: "daily"
+    difficulty: "easy"
+    objectives:
+      - type: "kill"
+        target: "RANDOM_HOSTILE_MOB"
+        amount: "RANDOM_15_40"
+        description: "Derrota {amount} {target}"
+    rewards:
+      money: "RANDOM_75_250"
+      experience: "RANDOM_40_150"
+    reset_time: "daily"
+    
+  # WEEKLY QUESTS
+  weekly_boss_hunt:
+    name: "Caza de Jefes Semanal"
+    description: "Derrota jefes poderosos para obtener grandes recompensas"
+    type: "weekly"
+    difficulty: "hard"
+    objectives:
+      - type: "kill_boss"
+        target: "ANY_BOSS"
+        amount: 3
+        description: "Derrota 3 jefes cualesquiera"
+    rewards:
+      money: 2000.0
+      experience: 1000
+      items:
+        - material: "RANDOM_RARE_ITEM"
+          amount: 1
+    reset_time: "weekly"
+
+# ===========================================
+# QUEST CHAINS
+# ===========================================
+quest_chains:
+  newcomer_chain:
+    name: "Cadena del Recién Llegado"
+    description: "Una serie de misiones para nuevos jugadores"
+    quests: ["welcome_quest", "mining_basics", "combat_training"]
+    completion_reward:
+      money: 500.0
+      title: "Veterano"
+      
+  master_adventurer_chain:
+    name: "Cadena del Aventurero Maestro"
+    description: "El camino hacia la maestría completa"
+    quests: ["advanced_miner", "monster_hunter", "nether_explorer", "ender_challenger"]
+    completion_reward:
+      money: 10000.0
+      title: "Maestro Aventurero"
+      items:
+        - material: "NETHERITE_HELMET"
+          amount: 1
+          enchantments:
+            - "PROTECTION:4"
+            - "UNBREAKING:3"
+            - "RESPIRATION:3"
+          name: "<gold>Corona del Maestro Aventurero</gold>"
+
+# ===========================================
+# QUEST CATEGORIES AND TYPES
+# ===========================================
+quest_categories:
+  tutorial:
+    name: "Tutorial"
+    description: "Misiones para aprender el servidor"
+    icon: "BOOK"
+    
+  skill_progression:
+    name: "Progresión de Habilidades"
+    description: "Misiones para mejorar tus habilidades"
+    icon: "EXPERIENCE_BOTTLE"
+    
+  exploration:
+    name: "Exploración"
+    description: "Descubre nuevos lugares y biomas"
+    icon: "COMPASS"
+    
+  combat:
+    name: "Combate"
+    description: "Desafíos de lucha y supervivencia"
+    icon: "IRON_SWORD"
+    
+  daily:
+    name: "Diarias"
+    description: "Misiones que se renuevan cada día"
+    icon: "CLOCK"
+    
+  weekly:
+    name: "Semanales"
+    description: "Desafíos semanales con grandes recompensas"
+    icon: "CALENDAR"
+    
+  faction:
+    name: "Facción"
+    description: "Misiones relacionadas con facciones"
+    icon: "BANNER"
+    
+  boss_challenge:
+    name: "Desafío de Jefe"
+    description: "Enfrenta a los jefes más poderosos"
+    icon: "WITHER_SKELETON_SKULL"
+
+# ===========================================
+# DYNAMIC QUEST GENERATION TEMPLATES
+# ===========================================
+dynamic_templates:
+  mining_template:
+    base_name: "Extracción de {material}"
+    description: "Extrae {amount} {material} para obtener recompensas"
+    objectives:
+      - type: "mine"
+        target: "{material}"
+        amount: "{amount}"
+    rewards:
+      money: "{base_reward}"
+      skill_experience:
+        mining: "{skill_exp}"
+        
+  hunting_template:
+    base_name: "Caza de {mob}"
+    description: "Derrota {amount} {mob} y recolecta sus drops"
+    objectives:
+      - type: "kill"
+        target: "{mob}"
+        amount: "{amount}"
+    rewards:
+      money: "{base_reward}"
+      skill_experience:
+        combat: "{skill_exp}"
+
+# ===========================================
+# PLAYER QUEST DATA STORAGE
+# ===========================================
+players: {}
+# Structure:
+# uuid:
+#   active_quests:
+#     quest_id:
+#       progress:
+#         objective_1: current_amount
+#         objective_2: current_amount
+#       start_time: timestamp
+#   completed_quests: ["quest_id1", "quest_id2"]
+#   daily_quests_completed_today: 3
+#   weekly_quests_completed_this_week: 1
+#   quest_streak: 5

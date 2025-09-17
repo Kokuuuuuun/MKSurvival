@@ -1,0 +1,363 @@
+# Configuración de especializaciones de habilidades - Sistema completo y funcional
+specializations:
+  # ===== ESPECIALIZACIONES DE MINERÍA =====
+  enhanced_mining:
+    name: "Minería Mejorada"
+    description: "Otorga efecto de Prisa durante la minería"
+    skill_type: "MINING"
+    max_level: 5
+    required_skill_level: 10
+    unlock_cost: 1000
+    upgrade_cost_base: 500
+    level_bonuses:
+      - "Nivel 1: 25% probabilidad de Prisa I por 3 segundos"
+      - "Nivel 2: 30% probabilidad de Prisa I por 3 segundos"
+      - "Nivel 3: 35% probabilidad de Prisa II por 3 segundos"
+      - "Nivel 4: 40% probabilidad de Prisa II por 3 segundos"
+      - "Nivel 5: 45% probabilidad de Prisa III por 3 segundos"
+
+  fortune_mining:
+    name: "Fortuna Minera"
+    description: "Probabilidad de obtener gotas adicionales al minar"
+    skill_type: "MINING"
+    max_level: 3
+    required_skill_level: 25
+    unlock_cost: 2000
+    upgrade_cost_base: 1000
+    level_bonuses:
+      - "Nivel 1: 15% probabilidad de gota extra"
+      - "Nivel 2: 25% probabilidad de gota extra"
+      - "Nivel 3: 35% probabilidad de gota extra"
+
+  gem_finding:
+    name: "Buscador de Gemas"
+    description: "Posibilidad de encontrar gemas raras al minar"
+    skill_type: "MINING"
+    max_level: 4
+    required_skill_level: 40
+    unlock_cost: 5000
+    upgrade_cost_base: 2000
+    level_bonuses:
+      - "Nivel 1: 0.2% probabilidad de gema rara"
+      - "Nivel 2: 0.4% probabilidad de gema rara"
+      - "Nivel 3: 0.6% probabilidad de gema rara"
+      - "Nivel 4: 0.8% probabilidad de gema rara"
+
+  efficient_miner:
+    name: "Minero Eficiente"
+    description: "Aumenta la experiencia obtenida de minería"
+    skill_type: "MINING"
+    max_level: 5
+    required_skill_level: 30
+    unlock_cost: 3000
+    upgrade_cost_base: 1500
+    level_bonuses:
+      - "Nivel 1: +10% experiencia de minería"
+      - "Nivel 2: +20% experiencia de minería"
+      - "Nivel 3: +30% experiencia de minería"
+      - "Nivel 4: +40% experiencia de minería"
+      - "Nivel 5: +50% experiencia de minería"
+
+  speed_mining:
+    name: "Minería Veloz"
+    description: "Bonificación permanente de velocidad de minado"
+    skill_type: "MINING"
+    max_level: 3
+    required_skill_level: 50
+    unlock_cost: 8000
+    upgrade_cost_base: 3000
+    level_bonuses:
+      - "Nivel 1: +15% velocidad de minado"
+      - "Nivel 2: +30% velocidad de minado"
+      - "Nivel 3: +45% velocidad de minado"
+
+  # ===== ESPECIALIZACIONES DE COMBATE =====
+  critical_strikes:
+    name: "Golpes Críticos"
+    description: "Probabilidad de causar golpes críticos con daño aumentado"
+    skill_type: "COMBAT"
+    max_level: 5
+    required_skill_level: 15
+    unlock_cost: 1500
+    upgrade_cost_base: 750
+    level_bonuses:
+      - "Nivel 1: 8% probabilidad de crítico (1.5x daño)"
+      - "Nivel 2: 11% probabilidad de crítico (1.7x daño)"
+      - "Nivel 3: 14% probabilidad de crítico (1.9x daño)"
+      - "Nivel 4: 17% probabilidad de crítico (2.1x daño)"
+      - "Nivel 5: 20% probabilidad de crítico (2.3x daño)"
+
+  berserker:
+    name: "Berserker"
+    description: "Más daño cuando la salud es baja"
+    skill_type: "COMBAT"
+    max_level: 4
+    required_skill_level: 30
+    unlock_cost: 3500
+    upgrade_cost_base: 1500
+    level_bonuses:
+      - "Nivel 1: +15% daño cuando salud < 50%"
+      - "Nivel 2: +30% daño cuando salud < 50%"
+      - "Nivel 3: +45% daño cuando salud < 50%"
+      - "Nivel 4: +60% daño cuando salud < 50%"
+
+  lifesteal:
+    name: "Robo de Vida"
+    description: "Cura vida al causar daño"
+    skill_type: "COMBAT"
+    max_level: 5
+    required_skill_level: 25
+    unlock_cost: 2500
+    upgrade_cost_base: 1200
+    level_bonuses:
+      - "Nivel 1: Cura 5% del daño causado"
+      - "Nivel 2: Cura 10% del daño causado"
+      - "Nivel 3: Cura 15% del daño causado"
+      - "Nivel 4: Cura 20% del daño causado"
+      - "Nivel 5: Cura 25% del daño causado"
+
+  weapon_mastery:
+    name: "Maestría con Armas"
+    description: "Bonificación permanente de daño"
+    skill_type: "COMBAT"
+    max_level: 5
+    required_skill_level: 20
+    unlock_cost: 2000
+    upgrade_cost_base: 1000
+    level_bonuses:
+      - "Nivel 1: +10% daño con todas las armas"
+      - "Nivel 2: +20% daño con todas las armas"
+      - "Nivel 3: +30% daño con todas las armas"
+      - "Nivel 4: +40% daño con todas las armas"
+      - "Nivel 5: +50% daño con todas las armas"
+
+  combat_mastery:
+    name: "Maestría de Combate"
+    description: "Aumenta la experiencia obtenida en combate"
+    skill_type: "COMBAT"
+    max_level: 5
+    required_skill_level: 35
+    unlock_cost: 4000
+    upgrade_cost_base: 1800
+    level_bonuses:
+      - "Nivel 1: +8% experiencia de combate"
+      - "Nivel 2: +16% experiencia de combate"
+      - "Nivel 3: +24% experiencia de combate"
+      - "Nivel 4: +32% experiencia de combate"
+      - "Nivel 5: +40% experiencia de combate"
+
+  strength_training:
+    name: "Entrenamiento de Fuerza"
+    description: "Bonificación adicional de daño acumulativa"
+    skill_type: "COMBAT"
+    max_level: 3
+    required_skill_level: 45
+    unlock_cost: 6000
+    upgrade_cost_base: 2500
+    level_bonuses:
+      - "Nivel 1: +5% daño adicional"
+      - "Nivel 2: +10% daño adicional"
+      - "Nivel 3: +15% daño adicional"
+
+  # ===== ESPECIALIZACIONES DE TALA =====
+  fast_woodcutting:
+    name: "Tala Rápida"
+    description: "Aumenta la velocidad de corte de árboles"
+    skill_type: "WOODCUTTING"
+    max_level: 5
+    required_skill_level: 10
+    unlock_cost: 1000
+    upgrade_cost_base: 500
+    level_bonuses:
+      - "Nivel 1: +10% velocidad de tala"
+      - "Nivel 2: +20% velocidad de tala"
+      - "Nivel 3: +30% velocidad de tala"
+      - "Nivel 4: +40% velocidad de tala"
+      - "Nivel 5: +50% velocidad de tala"
+
+  double_wood:
+    name: "Madera Doble"
+    description: "Probabilidad de obtener madera adicional"
+    skill_type: "WOODCUTTING"
+    max_level: 3
+    required_skill_level: 30
+    unlock_cost: 3000
+    upgrade_cost_base: 1500
+    level_bonuses:
+      - "Nivel 1: 15% probabilidad de madera doble"
+      - "Nivel 2: 30% probabilidad de madera doble"
+      - "Nivel 3: 50% probabilidad de madera doble"
+
+  forestry_expert:
+    name: "Experto Forestal"
+    description: "Aumenta la experiencia obtenida de tala"
+    skill_type: "WOODCUTTING"
+    max_level: 5
+    required_skill_level: 25
+    unlock_cost: 2500
+    upgrade_cost_base: 1200
+    level_bonuses:
+      - "Nivel 1: +12% experiencia de tala"
+      - "Nivel 2: +24% experiencia de tala"
+      - "Nivel 3: +36% experiencia de tala"
+      - "Nivel 4: +48% experiencia de tala"
+      - "Nivel 5: +60% experiencia de tala"
+
+  tree_felling:
+    name: "Talador de Árboles"
+    description: "Corta árboles completos de una vez"
+    skill_type: "WOODCUTTING"
+    max_level: 3
+    required_skill_level: 40
+    unlock_cost: 5000
+    upgrade_cost_base: 2000
+    level_bonuses:
+      - "Nivel 1: Corta hasta 8 bloques conectados"
+      - "Nivel 2: Corta hasta 16 bloques conectados"
+      - "Nivel 3: Corta hasta 32 bloques conectados"
+
+  # ===== ESPECIALIZACIONES DE PESCA =====
+  lucky_fishing:
+    name: "Pesca Afortunada"
+    description: "Probabilidad de obtener capturas especiales"
+    skill_type: "FISHING"
+    max_level: 5
+    required_skill_level: 15
+    unlock_cost: 1500
+    upgrade_cost_base: 750
+    level_bonuses:
+      - "Nivel 1: 8% probabilidad de captura especial"
+      - "Nivel 2: 11% probabilidad de captura especial"
+      - "Nivel 3: 14% probabilidad de captura especial"
+      - "Nivel 4: 17% probabilidad de captura especial"
+      - "Nivel 5: 20% probabilidad de captura especial"
+
+  treasure_hunter:
+    name: "Cazador de Tesoros"
+    description: "Posibilidad de encontrar tesoros al pescar"
+    skill_type: "FISHING"
+    max_level: 4
+    required_skill_level: 30
+    unlock_cost: 3000
+    upgrade_cost_base: 1500
+    level_bonuses:
+      - "Nivel 1: 0.5% probabilidad de tesoro ($100-200)"
+      - "Nivel 2: 1.0% probabilidad de tesoro ($150-250)"
+      - "Nivel 3: 1.5% probabilidad de tesoro ($200-300)"
+      - "Nivel 4: 2.0% probabilidad de tesoro ($250-350)"
+
+  double_catch:
+    name: "Captura Doble"
+    description: "Probabilidad de pescar dos veces en una captura"
+    skill_type: "FISHING"
+    max_level: 3
+    required_skill_level: 25
+    unlock_cost: 2500
+    upgrade_cost_base: 1200
+    level_bonuses:
+      - "Nivel 1: 15% probabilidad de captura doble"
+      - "Nivel 2: 25% probabilidad de captura doble"
+      - "Nivel 3: 35% probabilidad de captura doble"
+
+  fishing_mastery:
+    name: "Maestría de Pesca"
+    description: "Aumenta la experiencia obtenida de pesca"
+    skill_type: "FISHING"
+    max_level: 5
+    required_skill_level: 20
+    unlock_cost: 2000
+    upgrade_cost_base: 1000
+    level_bonuses:
+      - "Nivel 1: +15% experiencia de pesca"
+      - "Nivel 2: +30% experiencia de pesca"
+      - "Nivel 3: +45% experiencia de pesca"
+      - "Nivel 4: +60% experiencia de pesca"
+      - "Nivel 5: +75% experiencia de pesca"
+
+  # ===== ESPECIALIZACIONES DE AGRICULTURA =====
+  rapid_growth:
+    name: "Crecimiento Rápido"
+    description: "Acelera el crecimiento de los cultivos"
+    skill_type: "FARMING"
+    max_level: 4
+    required_skill_level: 10
+    unlock_cost: 1200
+    upgrade_cost_base: 600
+    level_bonuses:
+      - "Nivel 1: +15% velocidad de crecimiento"
+      - "Nivel 2: +30% velocidad de crecimiento"
+      - "Nivel 3: +50% velocidad de crecimiento"
+      - "Nivel 4: +75% velocidad de crecimiento"
+
+  double_harvest:
+    name: "Cosecha Doble"
+    description: "Probabilidad de obtener cosecha adicional"
+    skill_type: "FARMING"
+    max_level: 3
+    required_skill_level: 20
+    unlock_cost: 2500
+    upgrade_cost_base: 1250
+    level_bonuses:
+      - "Nivel 1: 20% probabilidad de cosecha doble"
+      - "Nivel 2: 40% probabilidad de cosecha doble"
+      - "Nivel 3: 65% probabilidad de cosecha doble"
+
+  green_thumb:
+    name: "Pulgar Verde"
+    description: "Aumenta la experiencia obtenida de agricultura"
+    skill_type: "FARMING"
+    max_level: 5
+    required_skill_level: 25
+    unlock_cost: 2500
+    upgrade_cost_base: 1200
+    level_bonuses:
+      - "Nivel 1: +12% experiencia de agricultura"
+      - "Nivel 2: +24% experiencia de agricultura"
+      - "Nivel 3: +36% experiencia de agricultura"
+      - "Nivel 4: +48% experiencia de agricultura"
+      - "Nivel 5: +60% experiencia de agricultura"
+
+  # ===== ESPECIALIZACIONES AVANZADAS =====
+  fire_resistance:
+    name: "Resistencia al Fuego"
+    description: "Reduce el daño por fuego y lava"
+    skill_type: "COMBAT"
+    max_level: 5
+    required_skill_level: 40
+    unlock_cost: 4000
+    upgrade_cost_base: 2000
+    level_bonuses:
+      - "Nivel 1: -20% daño por fuego"
+      - "Nivel 2: -40% daño por fuego"
+      - "Nivel 3: Inmunidad al fuego"
+      - "Nivel 4: Inmunidad al fuego + regeneración"
+      - "Nivel 5: Inmunidad al fuego + regeneración + absorción"
+
+  poison_immunity:
+    name: "Inmunidad al Veneno"
+    description: "Resistencia a efectos de veneno"
+    skill_type: "ALCHEMY"
+    max_level: 4
+    required_skill_level: 35
+    unlock_cost: 5000
+    upgrade_cost_base: 2500
+    level_bonuses:
+      - "Nivel 1: -25% duración de veneno"
+      - "Nivel 2: -50% duración de veneno"
+      - "Nivel 3: -75% duración de veneno"
+      - "Nivel 4: Inmunidad completa al veneno"
+
+  feather_fall:
+    name: "Caída de Pluma"
+    description: "Reduce el daño por caída"
+    skill_type: "FORAGING"
+    max_level: 5
+    required_skill_level: 30
+    unlock_cost: 3500
+    upgrade_cost_base: 1800
+    level_bonuses:
+      - "Nivel 1: -20% daño por caída"
+      - "Nivel 2: -40% daño por caída"
+      - "Nivel 3: -60% daño por caída"
+      - "Nivel 4: -80% daño por caída"
+      - "Nivel 5: Sin daño por caída"

@@ -1,0 +1,524 @@
+# Sistema completo de recompensas - MKSurvival
+
+# ===========================================
+# CONFIGURACIÓN DEL SISTEMA DE RECOMPENSAS
+# ===========================================
+reward_system:
+  enable: true
+  
+  # Configuración global
+  global_settings:
+    default_sound: "ENTITY_EXPERIENCE_ORB_PICKUP"
+    default_message_format: "<gray>[</gray><gold>Recompensas</gold><gray>]</gray> <green>{message}</green>"
+    broadcast_rare_rewards: true
+    rare_threshold: 0.1  # 10% o menos para ser considerado raro
+    
+  # Multiplicadores globales
+  multipliers:
+    weekend_bonus: 1.5
+    event_bonus: 2.0
+    vip_bonus: 1.25
+    premium_bonus: 1.5
+    
+# ===========================================
+# CATEGORÍAS DE RECOMPENSAS
+# ===========================================
+reward_categories:
+  # RECOMPENSAS POR COMBATE
+  combat_rewards:
+    # Mobs comunes
+    common_zombie:
+      name: "<gray>Zombie Común</gray>"
+      trigger_chance: 0.8
+      items:
+        - material: "ROTTEN_FLESH"
+          amount: [1, 3]
+          chance: 1.0
+        - material: "IRON_NUGGET"
+          amount: 1
+          chance: 0.1
+      money: [2.0, 5.0]
+      experience: [5, 10]
+      sound: "ENTITY_EXPERIENCE_ORB_PICKUP"
+      message: "Has obtenido una recompensa común!"
+      
+    elite_zombie:
+      name: "<yellow>Zombie Élite</yellow>"
+      trigger_chance: 0.4
+      requirements:
+        mob_level: 10
+      items:
+        - material: "IRON_INGOT"
+          amount: 1
+          chance: 0.3
+        - material: "CHAINMAIL_HELMET"
+          amount: 1
+          chance: 0.1
+          enchantments:
+            - "PROTECTION:1"
+      money: [10.0, 25.0]
+      experience: [20, 40]
+      
+    rare_skeleton:
+      name: "<blue>Esqueleto Raro</blue>"
+      trigger_chance: 0.3
+      items:
+        - material: "BOW"
+          amount: 1
+          chance: 0.2
+          enchantments:
+            - "POWER:2"
+        - material: "ARROW"
+          amount: [10, 20]
+          chance: 0.8
+        - material: "BONE"
+          amount: [3, 8]
+          chance: 1.0
+      money: [15.0, 30.0]
+      experience: [25, 50]
+      
+    epic_creeper:
+      name: "<dark_green>Épico Creeper</dark_green>"
+      trigger_chance: 0.1
+      items:
+        - material: "TNT"
+          amount: [1, 3]
+          chance: 0.5
+        - material: "GUNPOWDER"
+          amount: [5, 15]
+          chance: 1.0
+        - material: "EMERALD"
+          amount: 1
+          chance: 0.2
+      money: [50.0, 100.0]
+      experience: [75, 150]
+      sound: "ENTITY_CREEPER_PRIMED"
+      message: "Has obtenido una recompensa épica!"
+      commands:
+        - "broadcast {player} ha derrotado un Creeper Épico!"
+        
+    legendary_enderman:
+      name: "<light_purple>Enderman Legendario</light_purple>"
+      trigger_chance: 0.05
+      items:
+        - material: "ENDER_PEARL"
+          amount: [2, 5]
+          chance: 1.0
+        - material: "EXPERIENCE_BOTTLE"
+          amount: [5, 15]
+          chance: 0.8
+        - material: "END_STONE"
+          amount: [10, 30]
+          chance: 0.6
+        - material: "ENDER_EYE"
+          amount: 1
+          chance: 0.1
+          name: "<light_purple>Ojo del Vacío</light_purple>"
+      money: [100.0, 250.0]
+      experience: [200, 400]
+      sound: "ENTITY_ENDERMAN_TELEPORT"
+      message: "¡INCREÍBLE! Has obtenido una recompensa legendaria!"
+      commands:
+        - "broadcast <light_purple>{player} ha derrotado un Enderman Legendario!</light_purple>"
+        - "title {player} title <gold>LEGENDARIO</gold>"
+        
+  # RECOMPENSAS POR MINERÍA
+  mining_rewards:
+    common_coal:
+      name: "<gray>Carbón Común</gray>"
+      trigger_chance: 0.7
+      items:
+        - material: "COAL"
+          amount: [1, 2]
+          chance: 1.0
+      money: [1.0, 3.0]
+      experience: [2, 5]
+      
+    rare_iron:
+      name: "<white>Hierro Raro</white>"
+      trigger_chance: 0.4
+      items:
+        - material: "IRON_INGOT"
+          amount: [1, 2]
+          chance: 1.0
+        - material: "COAL"
+          amount: [2, 5]
+          chance: 0.5
+      money: [5.0, 12.0]
+      experience: [8, 15]
+      
+    epic_gold:
+      name: "<yellow>Épico Oro</yellow>"
+      trigger_chance: 0.2
+      items:
+        - material: "GOLD_INGOT"
+          amount: [1, 3]
+          chance: 1.0
+        - material: "GOLDEN_APPLE"
+          amount: 1
+          chance: 0.1
+      money: [20.0, 40.0]
+      experience: [30, 60]
+      
+    legendary_diamond:
+      name: "<aqua>Diamante Legendario</aqua>"
+      trigger_chance: 0.05
+      items:
+        - material: "DIAMOND"
+          amount: [1, 2]
+          chance: 1.0
+        - material: "DIAMOND_ORE"
+          amount: [1, 3]
+          chance: 0.3
+        - material: "ENCHANTED_GOLDEN_APPLE"
+          amount: 1
+          chance: 0.05
+      money: [100.0, 200.0]
+      experience: [150, 300]
+      commands:
+        - "broadcast <aqua>{player} ha encontrado diamantes legendarios!</aqua>"
+        
+    mythical_ancient_debris:
+      name: "<dark_red>Escombros Míticos</dark_red>"
+      trigger_chance: 0.01
+      items:
+        - material: "ANCIENT_DEBRIS"
+          amount: [1, 2]
+          chance: 1.0
+        - material: "NETHERITE_SCRAP"
+          amount: 1
+          chance: 0.5
+        - material: "NETHER_STAR"
+          amount: 1
+          chance: 0.1
+      money: [500.0, 1000.0]
+      experience: [500, 1000]
+      sound: "ENTITY_WITHER_SPAWN"
+      message: "¡MITOLÓGICO! Has encontrado escombros del fin del mundo!"
+      commands:
+        - "broadcast <dark_red>¡{player} ha encontrado Ancient Debris Mítico!</dark_red>"
+        - "title {player} title <rainbow>MITOLÓGICO</rainbow>"
+        
+  # RECOMPENSAS POR PESCA
+  fishing_rewards:
+    common_fish:
+      name: "<blue>Pez Común</blue>"
+      trigger_chance: 0.6
+      items:
+        - material: "COD"
+          amount: 1
+          chance: 0.7
+        - material: "SALMON"
+          amount: 1
+          chance: 0.3
+      money: [2.0, 5.0]
+      experience: [3, 8]
+      
+    rare_treasure:
+      name: "<green>Tesoro Raro</green>"
+      trigger_chance: 0.2
+      items:
+        - material: "TROPICAL_FISH"
+          amount: 1
+          chance: 0.5
+        - material: "PUFFERFISH"
+          amount: 1
+          chance: 0.3
+        - material: "EMERALD"
+          amount: 1
+          chance: 0.1
+        - material: "ENCHANTED_BOOK"
+          amount: 1
+          chance: 0.05
+      money: [10.0, 25.0]
+      experience: [15, 35]
+      
+    legendary_catch:
+      name: "<gold>Captura Legendaria</gold>"
+      trigger_chance: 0.03
+      items:
+        - material: "ENCHANTED_GOLDEN_APPLE"
+          amount: 1
+          chance: 0.2
+        - material: "DIAMOND"
+          amount: [1, 3]
+          chance: 0.5
+        - material: "NAUTILUS_SHELL"
+          amount: [1, 2]
+          chance: 0.3
+        - material: "HEART_OF_THE_SEA"
+          amount: 1
+          chance: 0.05
+      money: [100.0, 300.0]
+      experience: [200, 500]
+      
+  # RECOMPENSAS POR AGRICULTURA
+  farming_rewards:
+    bountiful_harvest:
+      name: "<green>Cosecha Abundante</green>"
+      trigger_chance: 0.3
+      items:
+        - material: "WHEAT"
+          amount: [5, 15]
+          chance: 0.8
+        - material: "CARROT"
+          amount: [3, 10]
+          chance: 0.6
+        - material: "POTATO"
+          amount: [3, 10]
+          chance: 0.6
+        - material: "GOLDEN_CARROT"
+          amount: 1
+          chance: 0.1
+      money: [15.0, 40.0]
+      experience: [20, 50]
+      
+    magical_growth:
+      name: "<light_purple>Crecimiento Mágico</light_purple>"
+      trigger_chance: 0.1
+      items:
+        - material: "ENCHANTED_GOLDEN_APPLE"
+          amount: 1
+          chance: 0.1
+        - material: "GOLDEN_APPLE"
+          amount: [1, 3]
+          chance: 0.5
+        - material: "MELON"
+          amount: [5, 20]
+          chance: 0.8
+      money: [50.0, 150.0]
+      experience: [75, 200]
+      
+  # RECOMPENSAS POR EXPLORACIÓN
+  exploration_rewards:
+    hidden_treasure:
+      name: "<yellow>Tesoro Oculto</yellow>"
+      trigger_chance: 0.15
+      items:
+        - material: "COMPASS"
+          amount: 1
+          chance: 0.4
+          name: "<yellow>Brújula del Explorador</yellow>"
+        - material: "MAP"
+          amount: [1, 3]
+          chance: 0.6
+        - material: "EMERALD"
+          amount: [2, 8]
+          chance: 0.7
+      money: [25.0, 75.0]
+      experience: [30, 80]
+      
+    ancient_relic:
+      name: "<dark_purple>Reliquia Ancestral</dark_purple>"
+      trigger_chance: 0.05
+      items:
+        - material: "TOTEM_OF_UNDYING"
+          amount: 1
+          chance: 0.1
+        - material: "ELYTRA"
+          amount: 1
+          chance: 0.02
+          enchantments:
+            - "UNBREAKING:2"
+        - material: "DRAGON_HEAD"
+          amount: 1
+          chance: 0.01
+      money: [200.0, 500.0]
+      experience: [300, 800]
+
+# ===========================================
+# SISTEMA DE RECOMPENSAS ESPECIALES
+# ===========================================
+special_rewards:
+  # Recompensas de eventos
+  event_rewards:
+    halloween_special:
+      active_months: [10]  # Octubre
+      items:
+        - material: "PUMPKIN"
+          amount: [5, 15]
+          chance: 0.8
+          name: "<gold>Calabaza Encantada</gold>"
+        - material: "JACK_O_LANTERN"
+          amount: [1, 3]
+          chance: 0.4
+        - material: "WITHER_SKELETON_SKULL"
+          amount: 1
+          chance: 0.1
+      
+    christmas_special:
+      active_months: [12]  # Diciembre
+      items:
+        - material: "EMERALD"
+          amount: [5, 20]
+          chance: 0.6
+          name: "<green>Esmeralda Navideña</green>"
+        - material: "DIAMOND"
+          amount: [1, 5]
+          chance: 0.3
+        - material: "ENCHANTED_GOLDEN_APPLE"
+          amount: 1
+          chance: 0.2
+          
+  # Recompensas de boss
+  boss_rewards:
+    mini_boss:
+      money_range: [500.0, 1500.0]
+      rare_items:
+        - material: "NETHERITE_INGOT"
+          chance: 0.2
+        - material: "ENCHANTED_BOOK"
+          chance: 0.5
+          max_level: 4
+          
+    world_boss:
+      money_range: [2000.0, 10000.0]
+      legendary_items:
+        - material: "NETHERITE_SWORD"
+          chance: 0.1
+          enchantments:
+            - "SHARPNESS:5"
+            - "UNBREAKING:3"
+          name: "<red>Espada del Conquistador</red>"
+        - material: "DRAGON_EGG"
+          chance: 0.05
+          
+  # Recompensas de logros
+  achievement_rewards:
+    first_kill:
+      money: 100.0
+      items:
+        - material: "IRON_SWORD"
+          amount: 1
+          enchantments:
+            - "SHARPNESS:1"
+          name: "<green>Primera Victoria</green>"
+          
+    milestone_1000_kills:
+      money: 5000.0
+      items:
+        - material: "DIAMOND_SWORD"
+          amount: 1
+          enchantments:
+            - "SHARPNESS:4"
+            - "UNBREAKING:3"
+          name: "<gold>Verdugo Milenario</gold>"
+      title: "Cazador Veterano"
+
+# ===========================================
+# SISTEMA DE RAREZAS
+# ===========================================
+rarity_system:
+  enable: true
+  
+  # Configuración de rarezas
+  rarity_config:
+    common:
+      color: "<gray>"
+      chance_range: [0.5, 1.0]
+      multiplier: 1.0
+      
+    uncommon:
+      color: "<green>"
+      chance_range: [0.2, 0.5]
+      multiplier: 1.5
+      
+    rare:
+      color: "<blue>"
+      chance_range: [0.05, 0.2]
+      multiplier: 2.0
+      
+    epic:
+      color: "<dark_purple>"
+      chance_range: [0.01, 0.05]
+      multiplier: 3.0
+      
+    legendary:
+      color: "<gold>"
+      chance_range: [0.001, 0.01]
+      multiplier: 5.0
+      
+    mythical:
+      color: "<rainbow>"
+      chance_range: [0.0001, 0.001]
+      multiplier: 10.0
+
+# ===========================================
+# CONFIGURACIÓN DE LOOT TABLES
+# ===========================================
+loot_tables:
+  # Tabla de herramientas
+  tools:
+    wooden_tier:
+      - material: "WOODEN_SWORD"
+        weight: 30
+      - material: "WOODEN_PICKAXE"
+        weight: 25
+      - material: "WOODEN_AXE"
+        weight: 20
+        
+    iron_tier:
+      - material: "IRON_SWORD"
+        weight: 25
+        enchantments:
+          - "SHARPNESS:2"
+      - material: "IRON_PICKAXE"
+        weight: 25
+        enchantments:
+          - "EFFICIENCY:2"
+          
+    diamond_tier:
+      - material: "DIAMOND_SWORD"
+        weight: 10
+        enchantments:
+          - "SHARPNESS:3"
+          - "UNBREAKING:2"
+      - material: "DIAMOND_PICKAXE"
+        weight: 10
+        enchantments:
+          - "EFFICIENCY:3"
+          - "FORTUNE:1"
+          
+  # Tabla de consumibles
+  consumables:
+    healing:
+      - material: "GOLDEN_APPLE"
+        weight: 20
+      - material: "ENCHANTED_GOLDEN_APPLE"
+        weight: 1
+      - material: "POTION"
+        weight: 15
+        potion_type: "HEALING"
+        
+    utility:
+      - material: "ENDER_PEARL"
+        weight: 10
+      - material: "EXPERIENCE_BOTTLE"
+        weight: 25
+      - material: "FIREWORK_ROCKET"
+        weight: 15
+
+# ===========================================
+# CONFIGURACIÓN AVANZADA
+# ===========================================
+advanced_settings:
+  # Configuración de probabilidades
+  probability_settings:
+    luck_factor_enabled: true
+    player_level_bonus: 0.01  # 1% por nivel
+    skill_level_bonus: 0.005  # 0.5% por nivel de habilidad
+    
+  # Sistema de cooldowns
+  cooldown_system:
+    enable: true
+    global_cooldown: 1  # segundos
+    category_cooldowns:
+      combat: 5
+      mining: 2
+      fishing: 10
+      
+  # Configuración de almacenamiento
+  storage_settings:
+    save_reward_history: true
+    max_history_entries: 100
+    cleanup_old_entries: true

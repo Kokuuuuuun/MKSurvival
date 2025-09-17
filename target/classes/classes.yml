@@ -1,0 +1,397 @@
+# MKSurvival Classes Configuration - Advanced RPG Classes
+
+# ===========================================
+# CLASS SYSTEM SETTINGS
+# ===========================================
+class_system:
+  allow_class_change: true
+  class_change_cost: 1000.0
+  class_change_cooldown: 86400  # 24 hours
+  default_class: "adventurer"
+  max_prestige_level: 10
+
+# ===========================================
+# AVAILABLE CLASSES
+# ===========================================
+classes:
+  # WARRIOR CLASS - Tank/Melee DPS
+  warrior:
+    name: "Guerrero"
+    description: "Un maestro del combate cuerpo a cuerpo con alta resistencia"
+    icon: "IRON_SWORD"
+    rarity: "common"
+    
+    # Base stats
+    stats:
+      health_multiplier: 1.2
+      damage_multiplier: 1.15
+      speed_multiplier: 0.95
+      defense_multiplier: 1.3
+      
+    # Passive abilities
+    passive_abilities:
+      - name: "Resistencia Guerrera"
+        description: "Reduce el daño recibido en un 15%"
+        effect: "DAMAGE_RESISTANCE"
+        level: 1
+        permanent: true
+      - name: "Furia de Batalla"
+        description: "Daño aumenta al estar con poca vida"
+        trigger_health: 0.3
+        damage_bonus: 1.5
+        
+    # Active abilities (cooldown in seconds)
+    active_abilities:
+      charge:
+        name: "Carga Devastadora"
+        description: "Carga hacia el enemigo causando daño en área"
+        cooldown: 30
+        range: 10
+        damage_multiplier: 2.0
+        area_effect: true
+      taunt:
+        name: "Provocación"
+        description: "Atrae a todos los enemigos cercanos"
+        cooldown: 45
+        range: 15
+        duration: 10
+      
+    # Class progression bonuses
+    level_bonuses:
+      10:
+        - "Intimidación: Los mobs hostiles huyen ocasionalmente"
+      25:
+        - "Maestría con Espadas: +20% daño con espadas"
+      50:
+        - "Berserker: Velocidad de ataque aumenta al matar enemigos"
+      75:
+        - "Escudo Humano: Absorbe daño de aliados cercanos"
+      100:
+        - "Señor de la Guerra: Todas las habilidades mejoradas"
+        
+    # Preferred weapons and tools
+    preferred_equipment:
+      weapons: ["SWORD", "AXE"]
+      armor: ["HEAVY"]
+      
+  # ARCHER CLASS - Ranged DPS
+  archer:
+    name: "Arquero"
+    description: "Experto en combate a distancia con alta precisión"
+    icon: "BOW"
+    rarity: "common"
+    
+    stats:
+      health_multiplier: 0.9
+      damage_multiplier: 1.1
+      speed_multiplier: 1.2
+      accuracy_multiplier: 1.4
+      
+    passive_abilities:
+      - name: "Ojo de Águila"
+        description: "Mayor precisión con arcos"
+        effect: "NIGHT_VISION"
+        level: 0
+        permanent: true
+      - name: "Pasos Sigilosos"
+        description: "Movimiento silencioso"
+        effect: "SPEED"
+        level: 1
+        
+    active_abilities:
+      arrow_rain:
+        name: "Lluvia de Flechas"
+        description: "Dispara múltiples flechas al aire"
+        cooldown: 60
+        arrows: 10
+        area_radius: 5
+      piercing_shot:
+        name: "Disparo Perforante"
+        description: "Flecha que atraviesa múltiples enemigos"
+        cooldown: 20
+        piercing_levels: 3
+        
+    level_bonuses:
+      10:
+        - "Recuperación de Flechas: 25% chance de recuperar flechas"
+      25:
+        - "Tiro Rápido: Velocidad de disparo aumentada"
+      50:
+        - "Flechas Explosivas: Chance de flechas con efecto de explosión"
+      75:
+        - "Francotirador: Daño crítico a larga distancia"
+      100:
+        - "Maestro Arquero: Flechas teledirigidas"
+        
+    preferred_equipment:
+      weapons: ["BOW", "CROSSBOW"]
+      armor: ["LIGHT"]
+      
+  # MAGE CLASS - Magic DPS/Support
+  mage:
+    name: "Mago"
+    description: "Manipulador de magia elemental y hechizos poderosos"
+    icon: "BLAZE_ROD"
+    rarity: "rare"
+    
+    stats:
+      health_multiplier: 0.8
+      mana_multiplier: 2.0
+      magic_damage_multiplier: 1.6
+      mana_regen_multiplier: 1.5
+      
+    passive_abilities:
+      - name: "Aura Mágica"
+        description: "Regeneración de maná mejorada"
+        mana_regen_bonus: 2.0
+      - name: "Resistencia Mágica"
+        description: "Resistencia a efectos negativos"
+        magic_resistance: 0.3
+        
+    active_abilities:
+      fireball:
+        name: "Bola de Fuego"
+        description: "Proyectil ígneo explosivo"
+        cooldown: 10
+        mana_cost: 20
+        damage: 15
+        area_damage: true
+      ice_shard:
+        name: "Fragmento de Hielo"
+        description: "Proyectil que ralentiza al enemigo"
+        cooldown: 8
+        mana_cost: 15
+        damage: 10
+        slow_effect: 5
+      lightning_bolt:
+        name: "Rayo"
+        description: "Invoca un rayo desde el cielo"
+        cooldown: 25
+        mana_cost: 40
+        damage: 25
+        chain_effect: 3
+      teleport:
+        name: "Teletransporte"
+        description: "Teletransporte instantáneo"
+        cooldown: 30
+        mana_cost: 35
+        range: 20
+        
+    level_bonuses:
+      10:
+        - "Eficiencia Mágica: -20% costo de maná"
+      25:
+        - "Hechizos Duales: Posibilidad de lanzar dos hechizos"
+      50:
+        - "Maestría Elemental: Control de todos los elementos"
+      75:
+        - "Escudo Mágico: Absorbe daño mágico"
+      100:
+        - "Archimago: Hechizos de tiempo y espacio"
+        
+    preferred_equipment:
+      weapons: ["STAFF", "WAND"]
+      armor: ["ROBES"]
+      
+  # ADVENTURER CLASS - Jack of all trades
+  adventurer:
+    name: "Aventurero"
+    description: "Explorador versátil con habilidades equilibradas"
+    icon: "COMPASS"
+    rarity: "common"
+    
+    stats:
+      health_multiplier: 1.0
+      damage_multiplier: 1.0
+      speed_multiplier: 1.1
+      luck_multiplier: 1.3
+      
+    passive_abilities:
+      - name: "Suerte del Aventurero"
+        description: "Mayor chance de drops raros"
+        luck_bonus: 0.2
+      - name: "Explorador Nato"
+        description: "Velocidad de movimiento aumentada"
+        effect: "SPEED"
+        level: 0
+        
+    active_abilities:
+      treasure_hunt:
+        name: "Búsqueda de Tesoros"
+        description: "Revela tesoros cercanos"
+        cooldown: 120
+        range: 50
+        duration: 30
+      survival_instinct:
+        name: "Instinto de Supervivencia"
+        description: "Regeneración rápida al estar en peligro"
+        cooldown: 180
+        trigger_health: 0.2
+        regen_duration: 10
+        
+    level_bonuses:
+      10:
+        - "Mochilero: +9 espacios de inventario"
+      25:
+        - "Cartografío: Crea mapas automáticamente"
+      50:
+        - "Superviviente: Inmunidad a efectos ambientales"
+      75:
+        - "Explorador Maestro: Teletransporte a biomas"
+      100:
+        - "Leyenda Viviente: Todas las habilidades de clase"
+        
+    preferred_equipment:
+      weapons: ["ANY"]
+      armor: ["MEDIUM"]
+      
+  # PALADIN CLASS - Tank/Support hybrid
+  paladin:
+    name: "Paladín"
+    description: "Guerrero sagrado que protege y sana a sus aliados"
+    icon: "GOLDEN_SWORD"
+    rarity: "epic"
+    unlock_requirement:
+      combat_level: 50
+      cost: 5000
+      
+    stats:
+      health_multiplier: 1.4
+      damage_multiplier: 1.1
+      healing_multiplier: 2.0
+      holy_damage_multiplier: 1.5
+      
+    passive_abilities:
+      - name: "Aura Sagrada"
+        description: "Aliados cercanos reciben curación gradual"
+        healing_range: 10
+        healing_amount: 1
+      - name: "Bendición Divina"
+        description: "Resistencia a efectos negativos"
+        debuff_resistance: 0.5
+        
+    active_abilities:
+      holy_light:
+        name: "Luz Sagrada"
+        description: "Cura a aliados y daña no-muertos"
+        cooldown: 15
+        healing: 20
+        undead_damage: 30
+        range: 15
+      divine_protection:
+        name: "Protección Divina"
+        description: "Escudo que absorbe daño"
+        cooldown: 45
+        shield_amount: 50
+        duration: 30
+      consecration:
+        name: "Consagración"
+        description: "Santifica el suelo, dañando enemigos"
+        cooldown: 60
+        area_radius: 8
+        duration: 15
+        damage_per_tick: 5
+        
+    level_bonuses:
+      10:
+        - "Armas Benditas: Las armas causan daño sagrado extra"
+      25:
+        - "Resurrección: Revive aliados caídos"
+      50:
+        - "Juicio Divino: Marca enemigos para daño extra"
+      75:
+        - "Venganza Sagrada: Daño aumenta al proteger aliados"
+      100:
+        - "Avatar Divino: Transformación celestial temporal"
+        
+  # ASSASSIN CLASS - Stealth DPS
+  assassin:
+    name: "Asesino"
+    description: "Maestro de las sombras y ataques sigilosos"
+    icon: "IRON_DAGGER"
+    rarity: "epic"
+    unlock_requirement:
+      stealth_kills: 100
+      cost: 7500
+      
+    stats:
+      health_multiplier: 0.7
+      damage_multiplier: 1.8
+      speed_multiplier: 1.5
+      stealth_multiplier: 2.0
+      critical_chance: 0.3
+      
+    passive_abilities:
+      - name: "Pasos en Sombras"
+        description: "Movimiento silencioso e invisible"
+        stealth_duration: 10
+        stealth_cooldown: 60
+      - name: "Golpe Letal"
+        description: "Ataques por la espalda causan daño crítico"
+        backstab_multiplier: 3.0
+        
+    active_abilities:
+      shadow_strike:
+        name: "Golpe Sombrío"
+        description: "Teletransporte hacia el enemigo y ataque"
+        cooldown: 20
+        range: 15
+        damage_multiplier: 2.5
+      poison_blade:
+        name: "Hoja Envenenada"
+        description: "Las armas causan daño por veneno"
+        cooldown: 30
+        poison_duration: 10
+        poison_damage: 3
+      smoke_bomb:
+        name: "Bomba de Humo"
+        description: "Crea humo que ciega a los enemigos"
+        cooldown: 45
+        area_radius: 8
+        blind_duration: 8
+        
+    level_bonuses:
+      10:
+        - "Esquivar: Chance de evitar ataques completamente"
+      25:
+        - "Venenos Mejorados: Múltiples tipos de veneno"
+      50:
+        - "Asesinato Sigiloso: Mata instantáneamente enemigos débiles"
+      75:
+        - "Sombras Vivientes: Crea clones temporales"
+      100:
+        - "Maestro de Sombras: Control total de la oscuridad"
+
+# ===========================================
+# CLASS PRESTIGE SYSTEM
+# ===========================================
+prestige_system:
+  enable: true
+  max_prestige: 10
+  
+  # Benefits per prestige level
+  prestige_bonuses:
+    1:
+      stat_bonus: 0.05  # 5% boost to all stats
+      title: "Veterano"
+    5:
+      stat_bonus: 0.15
+      title: "Maestro"
+      special_ability: "Prestige Aura"
+    10:
+      stat_bonus: 0.25
+      title: "Legendario"
+      special_ability: "Legendary Powers"
+
+# ===========================================
+# PLAYER DATA STORAGE
+# ===========================================
+players: {}
+# Structure:
+# uuid:
+#   class: "warrior"
+#   level: 45
+#   experience: 12500
+#   prestige: 2
+#   abilities_unlocked: ["charge", "taunt"]
+#   last_class_change: timestamp

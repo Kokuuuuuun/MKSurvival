@@ -1,0 +1,385 @@
+# Sistema completo de protección de tierras - MKSurvival
+
+# ===========================================
+# CONFIGURACIÓN DEL SISTEMA DE TIERRAS
+# ===========================================
+land_system:
+  enable: true
+  
+  # Configuración básica
+  basic_settings:
+    starting_blocks: 200
+    max_claims_per_player: 5
+    max_total_blocks: 10000
+    claim_cost_per_block: 0.0  # Gratis por defecto
+    
+  # Crecimiento de bloques
+  block_growth:
+    enable: true
+    blocks_per_hour_played: 2
+    blocks_per_level: 5
+    bonus_blocks_events: 50
+    
+  # Configuración de tamaños
+  claim_limits:
+    min_claim_size: 5  # 5x5 bloques mínimo
+    max_claim_size: 200  # 200x200 bloques máximo
+    min_distance_between_claims: 10
+    border_buffer: 5
+    
+# ===========================================
+# SISTEMA DE PROTECCIONES
+# ===========================================
+protection_settings:
+  # Protecciones generales
+  general:
+    block_break: true
+    block_place: true
+    container_access: true
+    entity_damage: true
+    item_pickup: true
+    crop_trampling: true
+    fire_spread: true
+    explosion_damage: true
+    
+  # Protecciones de entidades
+  entities:
+    animal_damage: true
+    monster_spawning: false  # Permite spawns naturales
+    pet_damage: true
+    vehicle_access: true
+    
+  # Protecciones especiales
+  special:
+    pvp_enabled: false  # PvP deshabilitado en claims
+    ender_grief: true
+    water_flow: false  # Permite flujo natural
+    lava_flow: false
+    
+# ===========================================
+# SISTEMA DE CONFIANZA (TRUST)
+# ===========================================
+trust_system:
+  enable: true
+  
+  # Niveles de confianza
+  trust_levels:
+    container:
+      name: "Acceso a Contenedores"
+      permissions:
+        - "container_access"
+        - "item_pickup"
+      color: "<green>"
+      
+    build:
+      name: "Permisos de Construcción"
+      permissions:
+        - "block_break"
+        - "block_place"
+        - "container_access"
+        - "item_pickup"
+      color: "<blue>"
+      
+    manager:
+      name: "Administrador"
+      permissions:
+        - "all_permissions"
+        - "trust_others"
+        - "claim_management"
+      color: "<gold>"
+      
+  # Configuración de confianza
+  trust_settings:
+    max_trusted_players: 20
+    trust_inheritance: true  # Subclaims heredan confianza
+    auto_trust_faction: true
+    
+# ===========================================
+# TIPOS DE CLAIMS ESPECIALES
+# ===========================================
+claim_types:
+  # Claim residencial estándar
+  residential:
+    name: "Residencial"
+    description: "Protección estándar para viviendas"
+    cost_multiplier: 1.0
+    max_size: 100
+    protections: "all"
+    
+  # Claim comercial
+  commercial:
+    name: "Comercial"
+    description: "Para tiendas y negocios"
+    cost_multiplier: 1.5
+    max_size: 150
+    special_features:
+      - "public_access"
+      - "shop_creation"
+      - "warp_creation"
+      
+  # Claim industrial
+  industrial:
+    name: "Industrial"
+    description: "Para granjas y producción"
+    cost_multiplier: 2.0
+    max_size: 300
+    special_features:
+      - "hopper_access"
+      - "redstone_extended"
+      - "mob_spawning"
+      
+  # Claim de almacenamiento
+  storage:
+    name: "Almacenamiento"
+    description: "Máxima protección para almacenes"
+    cost_multiplier: 1.2
+    max_size: 50
+    extra_protections:
+      - "explosion_immunity"
+      - "fire_immunity"
+      
+# ===========================================
+# SISTEMA DE SUBDIVISIONES
+# ===========================================
+subdivision_system:
+  enable: true
+  
+  # Configuración de subclaims
+  subclaim_settings:
+    max_subdivisions: 10
+    min_subdivision_size: 3  # 3x3 mínimo
+    inherit_parent_trust: true
+    separate_permissions: true
+    
+  # Tipos de subdivisiones
+  subdivision_types:
+    room:
+      name: "Habitación"
+      min_size: 3
+      max_size: 20
+      
+    shop:
+      name: "Tienda"
+      min_size: 5
+      max_size: 30
+      special_features: ["shop_creation"]
+      
+    farm:
+      name: "Granja"
+      min_size: 10
+      max_size: 100
+      special_features: ["crop_growth_boost"]
+      
+# ===========================================
+# SISTEMA ECONÓMICO DE TIERRAS
+# ===========================================
+economy_integration:
+  enable: true
+  
+  # Costos
+  costs:
+    claim_creation: 100.0
+    claim_expansion_per_block: 1.0
+    subdivision_creation: 50.0
+    trust_player: 10.0
+    
+  # Impuestos y mantenimiento
+  maintenance:
+    enable: true
+    daily_tax_per_block: 0.1
+    grace_period_days: 7
+    auto_unclaim_unpaid: true
+    
+  # Venta de claims
+  claim_trading:
+    enable: true
+    transfer_fee_percentage: 0.05
+    min_sale_price: 100.0
+    
+# ===========================================
+# CONFIGURACIÓN DE MUNDOS
+# ===========================================
+world_settings:
+  # Mundos habilitados
+  enabled_worlds:
+    - "world"
+    - "world_nether"
+    - "world_the_end"
+    
+  # Configuración por mundo
+  world_configs:
+    world:
+      claiming_enabled: true
+      pvp_override: false
+      cost_multiplier: 1.0
+      
+    world_nether:
+      claiming_enabled: true
+      pvp_override: true
+      cost_multiplier: 2.0
+      special_protections:
+        - "ghast_grief"
+        - "fire_immunity"
+        
+    world_the_end:
+      claiming_enabled: false
+      pvp_override: true
+      cost_multiplier: 5.0
+      
+  # Zonas protegidas
+  protected_zones:
+    spawn:
+      world: "world"
+      center_x: 0
+      center_z: 0
+      radius: 100
+      protections: "all"
+      
+    market:
+      world: "world"
+      center_x: 1000
+      center_z: 1000
+      radius: 50
+      type: "commercial_zone"
+      
+# ===========================================
+# SISTEMA DE EVENTOS
+# ===========================================
+event_system:
+  # Eventos de claims
+  claim_events:
+    enable: true
+    
+    # Evento de entrada/salida
+    entry_exit_messages:
+      enable: true
+      show_owner: true
+      show_claim_name: true
+      
+    # Eventos de protección
+    protection_events:
+      log_violations: true
+      notify_owner: true
+      temporary_ban_threshold: 5
+      
+  # Integración con facciones
+  faction_integration:
+    enable: true
+    faction_claims_inherit: true
+    faction_member_auto_trust: true
+    
+# ===========================================
+# HERRAMIENTAS Y UTILIDADES
+# ===========================================
+tools:
+  # Herramienta de inspección
+  inspection_tool:
+    item: "GOLDEN_SHOVEL"
+    name: "<gold>Herramienta de Inspección</gold>"
+    lore:
+      - "<gray>Click derecho: Información del claim</gray>"
+      - "<gray>Click izquierdo: Crear claim</gray>"
+      
+  # Herramienta de modificación
+  modification_tool:
+    item: "GOLDEN_AXE"
+    name: "<gold>Herramienta de Modificación</gold>"
+    lore:
+      - "<gray>Redimensionar y gestionar claims</gray>"
+      
+  # Configuración de selección
+  selection:
+    auto_create_on_complete: false
+    show_selection_particles: true
+    particle_type: "VILLAGER_HAPPY"
+    
+# ===========================================
+# SISTEMA DE NOTIFICACIONES
+# ===========================================
+notifications:
+  # Notificaciones de entrada
+  entry_notifications:
+    enable: true
+    format: "<yellow>Entrando a tierra de {owner}</yellow>"
+    show_claim_info: true
+    
+  # Notificaciones de violación
+  violation_notifications:
+    enable: true
+    to_violator: "<red>No puedes hacer eso aquí.</red>"
+    to_owner: "<yellow>{player} intentó {action} en tu claim.</yellow>"
+    
+  # Notificaciones de mantenimiento
+  maintenance_notifications:
+    tax_due_warning: "<yellow>Tienes impuestos pendientes en tu claim.</yellow>"
+    claim_expiring: "<red>Tu claim expirará en {days} días por falta de pago.</red>"
+    
+# ===========================================
+# CONFIGURACIÓN AVANZADA
+# ===========================================
+advanced_settings:
+  # Optimización
+  performance:
+    cache_claim_data: true
+    chunk_loading_optimization: true
+    async_protection_checks: true
+    
+  # Integración con otros plugins
+  plugin_integration:
+    worldguard_priority: "high"
+    grief_prevention_import: true
+    
+  # Configuración de backup
+  backup:
+    auto_backup_interval: 3600  # 1 hora
+    max_backup_files: 10
+    
+# ===========================================
+# DATOS DE CLAIMS
+# ===========================================
+claims: {}
+# Estructura:
+# claim_id:
+#   owner: "uuid"
+#   world: "world"
+#   corner1:
+#     x: 100
+#     z: 100
+#   corner2:
+#     x: 200
+#     z: 200
+#   creation_date: timestamp
+#   last_active: timestamp
+#   claim_name: "Mi Casa"
+#   claim_type: "residential"
+#   trusted_players:
+#     uuid1: "build"
+#     uuid2: "container"
+#   subdivisions:
+#     sub1:
+#       corner1: {x: 110, z: 110}
+#       corner2: {x: 120, z: 120}
+#       type: "room"
+#   settings:
+#     pvp_enabled: false
+#     public_access: false
+#     allow_explosions: false
+
+# ===========================================
+# DATOS DE JUGADORES
+# ===========================================
+players: {}
+# Estructura:
+# uuid:
+#   claim_blocks: 200
+#   bonus_blocks: 50
+#   total_claims: 2
+#   last_login: timestamp
+#   playtime_hours: 120
+#   settings:
+#     auto_trust_faction: true
+#     show_entry_messages: true
+#   statistics:
+#     blocks_protected: 5000
+#     violations_detected: 3
+#     claims_created: 5

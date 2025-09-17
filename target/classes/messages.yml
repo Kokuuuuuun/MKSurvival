@@ -1,0 +1,115 @@
+# MKSurvival Messages Configuration
+# Using MiniMessage format
+
+prefix: "<gray>[</gray><gold>MKSurvival</gold><gray>]</gray> "
+
+# General messages
+no_permission: "<red>No tienes permiso para hacer eso.</red>"
+player_only: "<red>Este comando solo puede ser usado por jugadores.</red>"
+command_not_found: "<red>Comando desconocido. Usa /mksurvival para ayuda.</red>"
+invalid_number: "<red>Número inválido.</red>"
+invalid_item: "<red>Artículo inválido.</red>"
+invalid_arguments: "<red>Argumentos inválidos. Usa: {usage}</red>"
+
+# Skills messages
+skill_level_up: "<green>[Skills]</green> <yellow>¡Tu habilidad {skill} subió al nivel {level}!</yellow>"
+skill_double_drop: "<yellow>[Skills]</yellow> <green>¡Doble drop!</green>"
+skill_extra_drop: "<yellow>[Skills]</yellow> <green>¡Drop extra!</green>"
+skill_rare_fish: "<aqua>[Skills]</aqua> <green>¡Has pescado un pez raro!</green>"
+bonus_experience: "<blue>[Skills]</blue> <green>+{amount} EXP de bonificación!</green>"
+specialization_unlocked: "<gold>[Skills]</gold> <yellow>¡Nueva especialización: {specialization}!</yellow>"
+
+# Economy messages
+balance_self: "<green>Tu balance: <gold>{amount}</gold></green>"
+balance_received: "<green>Has recibido <gold>{amount}</gold> de {player}.</green>"
+balance_sent: "<green>Has enviado <gold>{amount}</gold> a {player}.</green>"
+balance_not_enough: "<red>No tienes suficiente dinero. Necesitas: <gold>{amount}</gold></red>"
+mob_reward: "<yellow>[Economía]</yellow> <green>Has recibido <gold>{amount}</gold> por derrotar a {mob}.</green>"
+mining_reward: "<yellow>[Economía]</yellow> <green>Has recibido <gold>{amount}</gold> por minar {block}.</green>"
+
+# Quest messages
+quest_accepted: "<green>[Misiones]</green> <yellow>Has aceptado: {quest}</yellow>"
+quest_completed: "<green>[Misiones]</green> <gold>¡Misión completada: {quest}!</gold>"
+quest_progress: "<blue>[Misiones]</blue> <yellow>Progreso en {quest}: {current}/{required}</yellow>"
+quest_reward_money: "<yellow>[Misiones]</yellow> <green>Recibiste: <gold>{amount}</gold></green>"
+quest_already_active: "<red>[Misiones]</red> <yellow>Ya tienes esta misión activa.</yellow>"
+quest_max_active: "<red>[Misiones]</red> <yellow>Has alcanzado el límite de misiones activas.</yellow>"
+quest_not_found: "<red>[Misiones]</red> <yellow>La misión no existe.</yellow>"
+new_daily_quest: "<gold>[Misiones]</gold> <green>¡Nueva misión diaria disponible!</green>"
+
+# Class messages
+class_changed: "<green>[Clases]</green> <yellow>¡Ahora eres un {class}!</yellow>"
+class_already_set: "<red>[Clases]</red> <yellow>Ya eres de esta clase.</yellow>"
+class_not_found: "<red>[Clases]</red> <yellow>La clase no existe.</yellow>"
+class_cooldown: "<red>[Clases]</red> <yellow>Debes esperar {time} antes de cambiar.</yellow>"
+ability_activated: "<blue>[Habilidad]</blue> <yellow>{ability} activada!</yellow>"
+
+# Land messages
+land_claimed: "<green>[Tierras]</green> <yellow>¡Área reclamada! Bloques restantes: {blocks}</yellow>"
+land_unclaimed: "<green>[Tierras]</green> <yellow>Reclamación eliminada. Bloques devueltos: {blocks}</yellow>"
+land_no_claim: "<red>[Tierras]</red> <yellow>La reclamación no existe.</yellow>"
+land_not_owner: "<red>[Tierras]</red> <yellow>No eres el dueño de esta reclamación.</yellow>"
+land_overlap: "<red>[Tierras]</red> <yellow>Esta área ya está reclamada.</yellow>"
+land_no_blocks: "<red>[Tierras]</red> <yellow>No tienes suficientes bloques. Necesitas: {needed}</yellow>"
+land_cannot_build: "<red>[Tierras]</red> <yellow>No puedes construir aquí.</yellow>"
+land_entered: "<yellow>[Tierras]</yellow> <green>Has entrado a la tierra de {owner}</green>"
+
+# Pet messages
+pet_spawned: "<green>[Mascotas]</green> <yellow>Has invocado a {name}!</yellow>"
+pet_fed: "<green>[Mascotas]</green> <yellow>Has alimentado a {name}!</yellow>"
+pet_level_up: "<gold>[Mascotas]</gold> <yellow>¡{name} subió al nivel {level}!</yellow>"
+pet_evolved: "<gold>[Mascotas]</gold> <yellow>¡{name} evolucionó a {evolution}!</yellow>"
+no_active_pet: "<red>[Mascotas]</red> <yellow>No tienes una mascota activa.</yellow>"
+breed_success: "<gold>[Mascotas]</gold> <yellow>¡Nueva mascota nacida: {name}!</yellow>"
+competition_won: "<gold>[Mascotas]</gold> <yellow>¡{name} ganó la competencia!</yellow>"
+
+# Faction messages
+faction_created: "<green>[Facciones]</green> <yellow>¡Facción {faction} creada!</yellow>"
+faction_joined: "<green>[Facciones]</green> <yellow>Te has unido a {faction}!</yellow>"
+faction_left: "<yellow>[Facciones]</yellow> <gray>Has abandonado {faction}.</gray>"
+ally_added: "<green>[Facciones]</green> <yellow>{faction1} es aliado de {faction2}!</yellow>"
+enemy_added: "<red>[Facciones]</red> <yellow>¡Guerra declarada contra {faction2}!</yellow>"
+territory_claimed: "<green>[Facciones]</green> <yellow>Territorio reclamado para {faction}!</yellow>"
+not_in_faction: "<red>[Facciones]</red> <yellow>No estás en ninguna facción.</yellow>"
+
+# Boss messages
+boss_spawned: "<red>[Jefes]</red> <yellow>¡{boss} ha aparecido en {location}!</yellow>"
+boss_defeated: "<gold>[Jefes]</gold> <yellow>¡{boss} derrotado por {player}!</yellow>"
+participant_reward: "<yellow>[Jefes]</yellow> <green>¡Recompensas recibidas por participar!</green>"
+ability_used: "<red>[Jefe]</red> <yellow>{boss} usa {ability}!</yellow>"
+
+# Dungeon messages
+dungeon_entered: "<dark_purple>[Mazmorras]</dark_purple> <yellow>Has entrado a {dungeon}!</yellow>"
+dungeon_completed: "<gold>[Mazmorras]</gold> <yellow>¡Mazmorra {dungeon} completada!</yellow>"
+speed_bonus: "<gold>[Mazmorras]</gold> <yellow>¡Bonificación por velocidad!</yellow>"
+party_created: "<green>[Grupo]</green> <yellow>Grupo creado!</yellow>"
+
+# Ranking messages
+position_gained: "<green>[Rankings]</green> <yellow>¡Puesto #{position} en {ranking}!</yellow>"
+season_ended: "<gold>[Rankings]</gold> <yellow>¡Temporada {season} terminada!</yellow>"
+competition_started: "<blue>[Competencia]</blue> <yellow>¡Nueva competencia: {name}!</yellow>"
+competition_won: "<gold>[Competencia]</gold> <yellow>¡Has ganado {name}!</yellow>"
+
+# Achievement messages
+achievement_unlocked: "<gold>[Logros]</gold> <yellow>¡Logro desbloqueado: {achievement}!</yellow>"
+achievement_progress: "<blue>[Logros]</blue> <yellow>Progreso: {current}/{required}</yellow>"
+
+# Shop messages
+shop_created: "<green>[Tienda]</green> <yellow>¡Tienda creada!</yellow>"
+shop_bought: "<green>[Tienda]</green> <yellow>Compraste {amount}x {item} por <gold>{price}</gold></yellow>"
+shop_sold: "<green>[Tienda]</green> <yellow>Vendiste {amount}x {item} por <gold>{price}</gold></yellow>"
+shop_no_money: "<red>[Tienda]</red> <yellow>No tienes suficiente dinero.</yellow>"
+
+# Teleport messages
+tp_request_sent: "<green>[TP]</green> <yellow>Solicitud enviada a {player}.</yellow>"
+tp_teleported: "<green>[TP]</green> <yellow>¡Teletransporte completado!</yellow>"
+home_set: "<green>[Hogar]</green> <yellow>Hogar '{name}' establecido!</yellow>"
+home_teleported: "<green>[Hogar]</green> <yellow>Teletransportado a '{name}'!</yellow>"
+
+# Cooldown messages
+command_cooldown: "<red>Espera {time} antes de usar este comando.</red>"
+combat_timer: "<red>¡Estás en combate! Tiempo: {time}</red>"
+
+# System messages
+restart_warning: "<yellow>[Sistema]</yellow> <red>¡Reinicio en {time}!</red>"
+data_saved: "<green>[Sistema]</green> <gray>Datos guardados.</gray>"

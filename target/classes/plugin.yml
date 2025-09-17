@@ -1,0 +1,202 @@
+name: MKSurvival
+version: 1.0
+main: com.mk.mksurvival.MKSurvival
+author: TuNombre
+api-version: 1.21
+depend: [WorldGuard]  # Agregando dependencia de WorldGuard
+softdepend: [WorldEdit, PlaceholderAPI]
+commands:
+  mksurvival:
+    description: Comando principal del plugin
+    usage: /mksurvival [subcomando]
+    aliases: [mks]
+    permission: mksurvival.use
+  balance:
+    description: Ver y gestionar tu balance económico
+    usage: /balance [subcomando]
+    aliases: [bal, money]
+    permission: mksurvival.economy.use
+  land:
+    description: Comandos de gestión de tierras
+    usage: /land <subcomando>
+    permission: mksurvival.land.use
+  class:
+    description: Comandos de clases
+    usage: /class <subcomando>
+    permission: mksurvival.class.use
+  quests:
+    description: Comandos de misiones
+    usage: /quests <subcomando>
+    permission: mksurvival.quests.use
+  skills:
+    description: Ver tus habilidades
+    usage: /skills
+    permission: mksurvival.skills.use
+  dungeon:
+    description: Comandos de dungeons
+    usage: /dungeon <subcomando>
+    permission: mksurvival.dungeon.use
+  faccion:
+    description: Comandos de facciones
+    usage: /faccion <subcomando> [argumentos]
+    aliases: [f]
+    permission: mksurvival.faccion.use
+  mascota:
+    description: Comandos de mascotas
+    usage: /mascota <subcomando> [argumentos]
+    aliases: [pet]
+    permission: mksurvival.mascota.use
+  calidad:
+    description: Comandos de calidad de items
+    usage: /calidad <subcomando> [argumentos]
+    aliases: [quality]
+    permission: mksurvival.calidad.use
+  especializacion:
+    description: Comandos de especializaciones de habilidades
+    usage: /especializacion <subcomando> [argumentos]
+    aliases: [spec, specialization]
+    permission: mksurvival.especializacion.use
+  mision:
+    description: Comandos de misiones dinámicas
+    usage: /mision <subcomando> [argumentos]
+    aliases: [quest, dynamicquest]
+    permission: mksurvival.mision.use
+  expbar:
+    description: Comandos para gestionar la barra de experiencia
+    usage: /expbar <subcomando> [argumentos]
+    aliases: [experiencia, exp]
+    permission: mksurvival.expbar.use
+  enemy:
+    description: Comandos para gestionar enemigos (admin)
+    usage: /enemy <subcomando> [argumentos]
+    aliases: [enemigo]
+    permission: mksurvival.enemy.admin
+permissions:
+  # Permiso raíz para todos los comandos
+  mksurvival.*:
+    description: Acceso a todos los comandos
+    default: op
+    children:
+      mksurvival.land.*: true
+      mksurvival.class.*: true
+      mksurvival.quests.*: true
+      mksurvival.skills.*: true
+      mksurvival.dungeon.*: true
+      mksurvival.faccion.*: true
+      mksurvival.mascota.*: true
+      mksurvival.calidad.*: true
+      mksurvival.especializacion.*: true
+      mksurvival.mision.*: true
+      mksurvival.expbar.*: true
+      mksurvival.enemy.*: true
+      mksurvival.admin.*: true
+  # Permisos para cada comando
+  mksurvival.land.*:
+    description: Acceso a todos los comandos de tierras
+    default: true
+    children:
+      mksurvival.land.use: true
+      mksurvival.land.claim: true
+      mksurvival.land.unclaim: true
+      mksurvival.land.trust: true
+      mksurvival.land.untrust: true
+      mksurvival.land.info: true
+      mksurvival.land.list: true
+
+  mksurvival.land.admin:
+    description: Permite a los administradores construir en cualquier terreno
+    default: op
+  mksurvival.class.*:
+    description: Acceso a todos los comandos de clases
+    default: true
+    children:
+      mksurvival.class.use: true
+      mksurvival.class.select: true
+      mksurvival.class.info: true
+  mksurvival.quests.*:
+    description: Acceso a todos los comandos de misiones
+    default: true
+    children:
+      mksurvival.quests.use: true
+      mksurvival.quests.list: true
+      mksurvival.quests.accept: true
+      mksurvival.quests.abandon: true
+  mksurvival.skills.*:
+    description: Acceso a todos los comandos de habilidades
+    default: true
+    children:
+      mksurvival.skills.use: true
+      mksurvival.skills.info: true
+  mksurvival.dungeon.*:
+    description: Acceso a todos los comandos de dungeons
+    default: true
+    children:
+      mksurvival.dungeon.use: true
+      mksurvival.dungeon.enter: true
+      mksurvival.dungeon.leave: true
+
+  mksurvival.faccion.*:
+    description: Acceso a todos los comandos de facciones
+    default: true
+    children:
+      mksurvival.faccion.use: true
+      mksurvival.faccion.create: true
+      mksurvival.faccion.invite: true
+      mksurvival.faccion.join: true
+      mksurvival.faccion.leave: true
+  mksurvival.mascota.*:
+    description: Acceso a todos los comandos de mascotas
+    default: true
+    children:
+      mksurvival.mascota.use: true
+      mksurvival.mascota.spawn: true
+      mksurvival.mascota.feed: true
+  mksurvival.calidad.*:
+    description: Acceso a todos los comandos de calidad
+    default: true
+    children:
+      mksurvival.calidad.use: true
+      mksurvival.calidad.upgrade: true
+      mksurvival.calidad.info: true
+  mksurvival.especializacion.*:
+    description: Acceso a todos los comandos de especializaciones
+    default: true
+    children:
+      mksurvival.especializacion.use: true
+      mksurvival.especializacion.unlock: true
+      mksurvival.especializacion.upgrade: true
+  mksurvival.mision.*:
+    description: Acceso a todos los comandos de misiones dinámicas
+    default: true
+    children:
+      mksurvival.mision.use: true
+      mksurvival.mision.accept: true
+      mksurvival.mission.abandon: true
+  mksurvival.expbar.*:
+    description: Acceso a todos los comandos de barra de experiencia
+    default: true
+    children:
+      mksurvival.expbar.use: true
+      mksurvival.expbar.toggle: true
+      mksurvival.expbar.mode: true
+  mksurvival.enemy.*:
+    description: Acceso a todos los comandos de enemigos
+    default: op
+    children:
+      mksurvival.enemy.admin: true
+      mksurvival.enemy.spawn: true
+      mksurvival.enemy.clear: true
+
+  # Permisos de administrador
+  mksurvival.admin.*:
+    description: Comandos de administrador
+    default: op
+    children:
+      mksurvival.dungeon.reset: true
+      mksurvival.land.bypass: true
+      mksurvival.faccion.admin: true
+      mksurvival.reload: true
+  # Permisos adicionales
+  mksurvival.chat.colors:
+    description: Permite usar colores en el chat
+    default: op

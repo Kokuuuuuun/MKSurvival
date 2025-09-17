@@ -1,0 +1,877 @@
+# Sistema completo de mascotas - MKSurvival
+
+# ===========================================
+# CONFIGURACIÓN DEL SISTEMA DE MASCOTAS
+# ===========================================
+pet_system:
+  enable: true
+  
+  # Configuración global
+  global_settings:
+    max_pets_per_player: 3
+    pet_spawn_cooldown: 5000  # milisegundos
+    pet_feed_cooldown: 30000
+    pet_skill_cooldown: 60    # segundos
+    pet_recall_distance: 50   # bloques
+    auto_teleport_distance: 100
+    
+  # Sistema de experiencia
+  experience_system:
+    enable: true
+    max_level: 100
+    exp_curve: 1.5
+    exp_sources:
+      kill_mob: 10
+      follow_owner: 1
+      use_ability: 5
+      daily_bonus: 50
+      
+  # Sistema de evolución
+  evolution_system:
+    enable: true
+    evolution_requirements:
+      level_threshold: 25
+      special_items_required: true
+      evolution_cost: 5000.0
+      
+  # Sistema de cría
+  breeding_system:
+    enable: true
+    breeding_cooldown: 86400  # 24 horas
+    pregnancy_duration: 3600  # 1 hora
+    max_offspring: 3
+    genetic_inheritance: true
+    
+  # Sistema de competencias
+  competition_system:
+    enable: true
+    daily_competitions: true
+    weekly_tournaments: true
+    competition_rewards: true
+
+# Tipos de comida para cada mascota
+food:
+  wolf:
+    - BONE
+    - COOKED_BEEF
+  fox:
+    - SWEET_BERRIES
+    - GLOW_BERRIES
+  cat:
+    - COD
+    - SALMON
+  ocelot:
+    - COD
+    - SALMON
+  parrot:
+    - COOKIE
+    - MELON_SEEDS
+  panda:
+    - BAMBOO
+    - SUGAR_CANE
+  horse:
+    - HAY_BLOCK
+    - WHEAT
+  donkey:
+    - HAY_BLOCK
+    - WHEAT
+  mule:
+    - HAY_BLOCK
+    - WHEAT
+  skeleton_horse:
+    - HAY_BLOCK
+    - WHEAT
+  zombie_horse:
+    - HAY_BLOCK
+    - WHEAT
+  llama:
+    - HAY_BLOCK
+    - WHEAT
+  trader_llama:
+    - HAY_BLOCK
+    - WHEAT
+  turtle:
+    - SEAGRASS
+  rabbit:
+    - CARROT
+    - DANDELION
+  chicken:
+    - WHEAT_SEEDS
+    - MELON_SEEDS
+  cow:
+    - WHEAT
+  pig:
+    - CARROT
+    - POTATO
+  sheep:
+    - WHEAT
+
+# Tipos de mascotas disponibles
+pet_types:
+  wolf:
+    name: "Lobo"
+    entity_type: "WOLF"
+    description: "Un leal compañero que ataca a mobs hostiles"
+    food:
+      - "BONE"
+      - "COOKED_BEEF"
+    abilities:
+      - "attack_mobs"
+    base_health: 20.0
+    base_speed: 0.3
+    spawn_particle: "HEART"
+  cat:
+    name: "Gato"
+    entity_type: "CAT"
+    description: "Un felino ágil que asusta a los creepers"
+    food:
+      - "COD"
+      - "SALMON"
+    abilities:
+      - "scare_creepers"
+    base_health: 10.0
+    base_speed: 0.4
+    spawn_particle: "SMOKE"
+  parrot:
+    name: "Loro"
+    entity_type: "PARROT"
+    description: "Un ave colorida que da efectos de velocidad"
+    food:
+      - "COOKIE"
+      - "MELON_SEEDS"
+    abilities:
+      - "speed_boost"
+    base_health: 6.0
+    base_speed: 0.2
+    spawn_particle: "VILLAGER_HAPPY"
+  fox:
+    name: "Zorro"
+    entity_type: "FOX"
+    description: "Un astuto zorro que encuentra items valiosos"
+    food:
+      - "SWEET_BERRIES"
+      - "GLOW_BERRIES"
+    abilities:
+      - "find_items"
+    base_health: 10.0
+    base_speed: 0.35
+    spawn_particle: "CRIT"
+  panda:
+    name: "Panda"
+    entity_type: "PANDA"
+    description: "Un oso pacífico que da efectos de saturación"
+    food:
+      - "BAMBOO"
+      - "SUGAR_CANE"
+    abilities:
+      - "saturation"
+    base_health: 20.0
+    base_speed: 0.15
+    spawn_particle: "HAPPY_VILLAGER"
+  ocelot:
+    name: "Ocelote"
+    entity_type: "OCELOT"
+    description: "Un felino salvaje y ágil"
+    food:
+      - "COD"
+      - "SALMON"
+    abilities:
+      - "speed_boost"
+    base_health: 10.0
+    base_speed: 0.4
+    spawn_particle: "SMOKE"
+  horse:
+    name: "Caballo"
+    entity_type: "HORSE"
+    description: "Una montura rápida y resistente"
+    food:
+      - "HAY_BLOCK"
+      - "WHEAT"
+    abilities:
+      - "mount"
+    base_health: 30.0
+    base_speed: 0.5
+    spawn_particle: "CLOUD"
+  donkey:
+    name: "Burro"
+    entity_type: "DONKEY"
+    description: "Una montura resistente con capacidad de almacenamiento"
+    food:
+      - "HAY_BLOCK"
+      - "WHEAT"
+    abilities:
+      - "mount"
+      - "storage"
+    base_health: 25.0
+    base_speed: 0.35
+    spawn_particle: "CLOUD"
+  mule:
+    name: "Mula"
+    entity_type: "MULE"
+    description: "Una montura muy resistente con capacidad de almacenamiento"
+    food:
+      - "HAY_BLOCK"
+      - "WHEAT"
+    abilities:
+      - "mount"
+      - "storage"
+    base_health: 30.0
+    base_speed: 0.3
+    spawn_particle: "CLOUD"
+  skeleton_horse:
+    name: "Caballo Esquelético"
+    entity_type: "SKELETON_HORSE"
+    description: "Una montura especial con habilidades únicas"
+    food:
+      - "HAY_BLOCK"
+      - "WHEAT"
+    abilities:
+      - "mount"
+      - "night_vision"
+    base_health: 35.0
+    base_speed: 0.4
+    spawn_particle: "SOUL_FIRE_FLAME"
+  zombie_horse:
+    name: "Caballo Zombi"
+    entity_type: "ZOMBIE_HORSE"
+    description: "Una montura única con resistencia al daño"
+    food:
+      - "HAY_BLOCK"
+      - "WHEAT"
+    abilities:
+      - "mount"
+      - "damage_resistance"
+    base_health: 40.0
+    base_speed: 0.35
+    spawn_particle: "ASH"
+  llama:
+    name: "Llama"
+    entity_type: "LLAMA"
+    description: "Una montura que puede transportar items"
+    food:
+      - "HAY_BLOCK"
+      - "WHEAT"
+    abilities:
+      - "mount"
+      - "spit"
+    base_health: 22.0
+    base_speed: 0.35
+    spawn_particle: "SPIT"
+  trader_llama:
+    name: "Llama Comerciante"
+    entity_type: "TRADER_LLAMA"
+    description: "Una llama especial que puede comerciar items"
+    food:
+      - "HAY_BLOCK"
+      - "WHEAT"
+    abilities:
+      - "mount"
+      - "trade"
+    base_health: 25.0
+    base_speed: 0.35
+    spawn_particle: "EMERALD"
+  turtle:
+    name: "Tortuga"
+    entity_type: "TURTLE"
+    description: "Una tortuga marina con defensa pasiva"
+    food:
+      - "SEAGRASS"
+    abilities:
+      - "defense"
+    base_health: 30.0
+    base_speed: 0.15
+    spawn_particle: "WATER_DROP"
+  rabbit:
+    name: "Conejo"
+    entity_type: "RABBIT"
+    description: "Un conejo ágil con velocidad extrema"
+    food:
+      - "CARROT"
+      - "DANDELION"
+    abilities:
+      - "speed_boost"
+      - "jump_boost"
+    base_health: 8.0
+    base_speed: 0.6
+    spawn_particle: "CLOUD"
+  chicken:
+    name: "Gallina"
+    entity_type: "CHICKEN"
+    description: "Una gallina que produce huevos"
+    food:
+      - "WHEAT_SEEDS"
+      - "MELON_SEEDS"
+    abilities:
+      - "egg_production"
+    base_health: 4.0
+    base_speed: 0.25
+    spawn_particle: "EGG_CRACK"
+  cow:
+    name: "Vaca"
+    entity_type: "COW"
+    description: "Una vaca que produce leche"
+    food:
+      - "WHEAT"
+    abilities:
+      - "milk_production"
+    base_health: 10.0
+    base_speed: 0.2
+    spawn_particle: "MILK"
+  pig:
+    name: "Cerdo"
+    entity_type: "PIG"
+    description: "Una montura básica"
+    food:
+      - "CARROT"
+      - "POTATO"
+    abilities:
+      - "mount"
+    base_health: 10.0
+    base_speed: 0.25
+    spawn_particle: "CLOUD"
+  sheep:
+    name: "Oveja"
+    entity_type: "SHEEP"
+    description: "Una oveja que produce lana"
+    food:
+      - "WHEAT"
+    abilities:
+      - "wool_production"
+    base_health: 8.0
+    base_speed: 0.2
+    spawn_particle: "WOOL"
+
+# Configuración de habilidades especiales
+abilities:
+  attack_mobs:
+    name: "Ataque a mobs"
+    description: "Ataca a mobs hostiles cercanos"
+    chance: 0.3
+    range: 10
+  scare_creepers:
+    name: "Asustar creepers"
+    description: "Asusta a los creepers cercanos"
+    chance: 0.5
+    range: 15
+  speed_boost:
+    name: "Impulso de velocidad"
+    description: "Da un impulso de velocidad al dueño"
+    chance: 0.05
+    duration: 200
+    amplifier: 0
+  find_items:
+    name: "Encontrar items"
+    description: "Encuentra items valiosos aleatoriamente"
+    chance: 0.02
+    possible_items:
+      - "IRON_INGOT"
+      - "GOLD_INGOT"
+      - "DIAMOND"
+      - "EMERALD"
+      - "NETHERITE_SCRAP"
+  saturation:
+    name: "Saturación"
+    description: "Da efectos de saturación al dueño"
+    chance: 0.03
+    duration: 200
+    amplifier: 0
+  mount:
+    name: "Montura"
+    description: "Permite ser montado por el dueño"
+  storage:
+    name: "Almacenamiento"
+    description: "Permite almacenar items en su inventario"
+    slots: 3
+  night_vision:
+    name: "Visión nocturna"
+    description: "Da visión nocturna al dueño"
+    duration: 300
+  damage_resistance:
+    name: "Resistencia al daño"
+    description: "Reduce el daño recibido"
+    reduction: 0.2
+  spit:
+    name: "Escupir"
+    description: "Escupe a los enemigos"
+    damage: 2.0
+    range: 10
+  trade:
+    name: "Comerciar"
+    description: "Permite comerciar items especiales"
+  defense:
+    name: "Defensa"
+    description: "Reduce el daño recibido"
+    reduction: 0.3
+  jump_boost:
+    name: "Salto mejorado"
+    description: "Mejora la altura de salto"
+    amplifier: 1
+  egg_production:
+    name: "Producción de huevos"
+    description: "Produce huevos periódicamente"
+    interval: 6000
+    chance: 0.1
+  milk_production:
+    name: "Producción de leche"
+    description: "Se puede ordeñar para obtener leche"
+    interval: 3000
+  wool_production:
+    name: "Producción de lana"
+    description: "Produce lana periódicamente"
+    interval: 9000
+    chance: 0.2
+
+# Configuración de mejoras para mascotas
+upgrades:
+  health:
+    name: "Salud Mejorada"
+    description: "Aumenta la salud máxima de tu mascota"
+    base_cost: 100
+    cost_multiplier: 1.5
+    increment: 5.0
+    max_level: 10
+  speed:
+    name: "Velocidad Mejorada"
+    description: "Aumenta la velocidad de movimiento de tu mascota"
+    base_cost: 150
+    cost_multiplier: 1.5
+    increment: 0.1
+    max_level: 5
+  damage:
+    name: "Daño Mejorado"
+    description: "Aumenta el daño de ataque de tu mascota"
+    base_cost: 200
+    cost_multiplier: 2.0
+    increment: 1.0
+    max_level: 8
+
+# ===========================================
+# SISTEMA DE GENÉTICA Y CRÍA
+# ===========================================
+genetics_system:
+  enable: true
+  
+  # Genes disponibles
+  genes:
+    strength:
+      name: "Fuerza"
+      description: "Aumenta el daño de ataque"
+      levels: ["débil", "normal", "fuerte", "superior"]
+      effects: [0.8, 1.0, 1.2, 1.5]
+      
+    speed:
+      name: "Velocidad"
+      description: "Aumenta la velocidad de movimiento"
+      levels: ["lento", "normal", "rápido", "veloz"]
+      effects: [0.8, 1.0, 1.3, 1.6]
+      
+    intelligence:
+      name: "Inteligencia"
+      description: "Reduce cooldowns de habilidades"
+      levels: ["básica", "normal", "astuto", "genio"]
+      effects: [1.2, 1.0, 0.8, 0.6]
+      
+    loyalty:
+      name: "Lealtad"
+      description: "Aumenta experiencia ganada"
+      levels: ["rebelde", "normal", "leal", "devoto"]
+      effects: [0.7, 1.0, 1.3, 1.7]
+      
+    stamina:
+      name: "Resistencia"
+      description: "Aumenta salud máxima"
+      levels: ["frágil", "normal", "resistente", "tanque"]
+      effects: [0.7, 1.0, 1.4, 1.8]
+      
+  # Sistema de mutaciones
+  mutations:
+    enable: true
+    mutation_chance: 0.05  # 5% chance
+    beneficial_mutations:
+      shiny:
+        name: "Brillante"
+        rarity: 0.01
+        visual_effect: "ENCHANT"
+        stat_bonus: 1.2
+      giant:
+        name: "Gigante"
+        rarity: 0.005
+        size_multiplier: 1.5
+        health_bonus: 2.0
+      swift:
+        name: "Veloz"
+        rarity: 0.02
+        speed_bonus: 1.8
+        
+# ===========================================
+# SISTEMA DE ENTRENAMIENTO
+# ===========================================
+training_system:
+  enable: true
+  
+  # Tipos de entrenamiento
+  training_types:
+    combat_training:
+      name: "Entrenamiento de Combate"
+      duration: 1800  # 30 minutos
+      cost: 500.0
+      requirements:
+        min_level: 5
+      effects:
+        strength_exp: 100
+        combat_skill_exp: 50
+        
+    agility_training:
+      name: "Entrenamiento de Agilidad"
+      duration: 1200  # 20 minutos
+      cost: 300.0
+      effects:
+        speed_exp: 80
+        agility_skill_exp: 40
+        
+    intelligence_training:
+      name: "Entrenamiento Mental"
+      duration: 2400  # 40 minutos
+      cost: 800.0
+      effects:
+        intelligence_exp: 120
+        skill_cooldown_reduction: 0.1
+        
+  # Obstáculos de entrenamiento
+  training_obstacles:
+    enable: true
+    obstacle_courses:
+      beginner:
+        name: "Curso Principiante"
+        difficulty: 1
+        rewards:
+          experience: 50
+          money: 100.0
+      intermediate:
+        name: "Curso Intermedio"
+        difficulty: 3
+        requirements:
+          min_level: 15
+        rewards:
+          experience: 150
+          money: 300.0
+      expert:
+        name: "Curso Experto"
+        difficulty: 5
+        requirements:
+          min_level: 40
+        rewards:
+          experience: 400
+          money: 800.0
+          
+# ===========================================
+# SISTEMA DE COMPETENCIAS Y EVENTOS
+# ===========================================
+competition_system:
+  enable: true
+  
+  # Competencias diarias
+  daily_competitions:
+    pet_races:
+      name: "Carreras de Mascotas"
+      description: "Compite en velocidad con tu mascota"
+      duration: 300  # 5 minutos
+      max_participants: 10
+      entry_fee: 100.0
+      rewards:
+        first_place:
+          money: 1000.0
+          experience: 200
+          title: "Campeón de Velocidad"
+        second_place:
+          money: 500.0
+          experience: 100
+        third_place:
+          money: 250.0
+          experience: 50
+          
+    pet_battles:
+      name: "Batallas de Mascotas"
+      description: "Combate PvP con mascotas"
+      duration: 600  # 10 minutos
+      max_participants: 8
+      entry_fee: 200.0
+      rewards:
+        winner:
+          money: 1500.0
+          experience: 300
+          title: "Maestro de Batalla"
+          
+    obstacle_challenge:
+      name: "Desafío de Obstáculos"
+      description: "Completa el curso más rápido"
+      duration: 180  # 3 minutos
+      max_participants: 15
+      entry_fee: 75.0
+      
+  # Torneos semanales
+  weekly_tournaments:
+    grand_championship:
+      name: "Gran Campeonato"
+      description: "Torneo eliminatorio semanal"
+      day_of_week: "SATURDAY"
+      time: "20:00"
+      duration: 3600  # 1 hora
+      max_participants: 32
+      entry_fee: 1000.0
+      rewards:
+        champion:
+          money: 25000.0
+          experience: 2000
+          title: "Gran Campeón"
+          special_item:
+            material: "GOLDEN_APPLE"
+            name: "<gold>Manzana del Campeón</gold>"
+            enchanted: true
+            
+# ===========================================
+# SISTEMA DE ACCESORIOS Y EQUIPAMIENTO
+# ===========================================
+equipment_system:
+  enable: true
+  
+  # Tipos de accesorios
+  accessory_types:
+    collars:
+      leather_collar:
+        name: "Collar de Cuero"
+        material: "LEATHER"
+        effects:
+          health_bonus: 2.0
+        cost: 100.0
+        
+      iron_collar:
+        name: "Collar de Hierro"
+        material: "IRON_INGOT"
+        effects:
+          health_bonus: 5.0
+          defense_bonus: 1.0
+        cost: 500.0
+        
+      diamond_collar:
+        name: "Collar de Diamante"
+        material: "DIAMOND"
+        effects:
+          health_bonus: 10.0
+          defense_bonus: 3.0
+          regeneration: true
+        cost: 2500.0
+        
+    saddles:
+      basic_saddle:
+        name: "Silla Básica"
+        applicable_pets: ["horse", "donkey", "mule"]
+        effects:
+          speed_bonus: 0.1
+        cost: 200.0
+        
+      racing_saddle:
+        name: "Silla de Carreras"
+        applicable_pets: ["horse"]
+        effects:
+          speed_bonus: 0.3
+          jump_bonus: 0.2
+        cost: 1000.0
+        
+    toys:
+      squeaky_toy:
+        name: "Juguete Chirriante"
+        effects:
+          happiness_bonus: 0.2
+          exp_bonus: 0.1
+        cost: 50.0
+        durability: 100
+        
+      training_ball:
+        name: "Pelota de Entrenamiento"
+        effects:
+          training_efficiency: 1.5
+        cost: 150.0
+        
+# ===========================================
+# MENSAJES DEL SISTEMA
+# ===========================================
+messages:
+  # Mensajes básicos
+  already_have_pet: "<red>[Mascotas]</red> <yellow>Ya tienes una mascota activa.</yellow>"
+  spawn_cooldown: "<red>[Mascotas]</red> <yellow>Debes esperar antes de invocar otra mascota.</yellow>"
+  invalid_pet_type: "<red>[Mascotas]</red> <yellow>Tipo de mascota no válido.</yellow>"
+  spawned_pet: "<green>[Mascotas]</green> <yellow>¡Has invocado a {name}!</yellow>"
+  no_active_pet: "<red>[Mascotas]</red> <yellow>No tienes una mascota activa.</yellow>"
+  
+  # Mensajes de alimentación
+  feed_cooldown: "<red>[Mascotas]</red> <yellow>Debes esperar antes de alimentar a tu mascota nuevamente.</yellow>"
+  invalid_food: "<red>[Mascotas]</red> <yellow>Este item no es comida para tu mascota.</yellow>"
+  fed_pet: "<green>[Mascotas]</green> <yellow>¡Has alimentado a {name}!</yellow>"
+  pet_full: "<yellow>[Mascotas]</yellow> <gray>Tu mascota está llena y no puede comer más.</gray>"
+  
+  # Mensajes de experiencia y nivel
+  level_up: "<gold>[Mascotas]</gold> <yellow>¡Tu mascota {name} ha subido al nivel {level}!</yellow>"
+  experience_gained: "<green>[Mascotas]</green> <yellow>{name} ha ganado {exp} puntos de experiencia.</yellow>"
+  max_level_reached: "<gold>[Mascotas]</gold> <yellow>¡{name} ha alcanzado el nivel máximo!</yellow>"
+  
+  # Mensajes de mejoras
+  not_enough_money: "<red>[Mascotas]</red> <yellow>Necesitas ${cost} para esta mejora.</yellow>"
+  upgraded_health: "<green>[Mascotas]</green> <yellow>¡Has mejorado la salud de tu mascota!</yellow>"
+  upgraded_speed: "<green>[Mascotas]</green> <yellow>¡Has mejorado la velocidad de tu mascota!</yellow>"
+  upgraded_damage: "<green>[Mascotas]</green> <yellow>¡Has mejorado el daño de tu mascota!</yellow>"
+  max_upgrade_level: "<yellow>[Mascotas]</yellow> <gray>Tu mascota ya ha alcanzado el nivel máximo para esta mejora.</gray>"
+  
+  # Mensajes de habilidades
+  skill_cooldown: "<red>[Mascotas]</red> <yellow>La habilidad está en cooldown. Tiempo restante: {cooldown}s</yellow>"
+  skill_used: "<green>[Mascotas]</green> <yellow>¡{name} ha usado su habilidad especial!</yellow>"
+  no_skill: "<gray>[Mascotas]</gray> <yellow>Tu mascota no tiene habilidades especiales disponibles.</yellow>"
+  
+  # Mensajes de cría y genética
+  breeding_started: "<green>[Mascotas]</green> <yellow>¡El proceso de cría ha comenzado!</yellow>"
+  breeding_completed: "<gold>[Mascotas]</gold> <yellow>¡Nueva cría disponible! Genes heredados detectados.</yellow>"
+  mutation_discovered: "<rainbow>[Mascotas]</rainbow> <yellow>¡MUTACIÓN DESCUBIERTA! Tu mascota tiene rasgos únicos.</yellow>"
+  
+  # Mensajes de competencias
+  competition_joined: "<blue>[Competencia]</blue> <yellow>Te has unido a {competition}!</yellow>"
+  competition_won: "<gold>[Victoria]</gold> <yellow>¡Has ganado {competition}!</yellow>"
+  competition_reward: "<green>[Recompensa]</green> <yellow>Has recibido: {reward}</yellow>"
+  
+  # Mensajes de entrenamiento
+  training_started: "<blue>[Entrenamiento]</blue> <yellow>{name} ha comenzado {training_type}.</yellow>"
+  training_completed: "<green>[Entrenamiento]</green> <yellow>¡{name} ha completado el entrenamiento!</yellow>"
+  training_failed: "<red>[Entrenamiento]</red> <yellow>{name} no pudo completar el entrenamiento.</yellow>"
+  
+  # Mensajes de equipamiento
+  equipment_equipped: "<green>[Equipamiento]</green> <yellow>Has equipado {item} a {name}.</yellow>"
+  equipment_removed: "<yellow>[Equipamiento]</yellow> <gray>Has removido {item} de {name}.</gray>"
+
+# ===========================================
+# DATOS DE JUGADORES Y MASCOTAS
+# ===========================================
+players: {}
+# Estructura completa de datos:
+# uuid:
+#   active_pets:
+#     pet_1:
+#       id: "unique_pet_id"
+#       type: "wolf"
+#       name: "Lobo Feroz"
+#       custom_name: "Mi Compañero"
+#       level: 25
+#       experience: 12500
+#       health: 45.0
+#       max_health: 50.0
+#       location:
+#         world: "world"
+#         x: 100.5
+#         y: 64.0
+#         z: -50.3
+#       genetics:
+#         strength: "superior"
+#         speed: "rápido"
+#         intelligence: "astuto"
+#         loyalty: "devoto"
+#         stamina: "resistente"
+#       mutations:
+#         - "shiny"
+#       training_progress:
+#         combat_training: 75
+#         agility_training: 60
+#         intelligence_training: 40
+#       equipment:
+#         collar: "diamond_collar"
+#         saddle: "racing_saddle"
+#         toy: "training_ball"
+#       statistics:
+#         mobs_killed: 150
+#         distance_traveled: 5000
+#         competitions_won: 5
+#         training_sessions: 20
+#       last_fed: timestamp
+#       last_trained: timestamp
+#       happiness: 85
+#       loyalty_points: 1250
+#       special_abilities:
+#         - "pack_leader"
+#         - "night_vision"
+#   pet_storage:
+#     stored_pet_1:
+#       # Misma estructura que active_pets
+#   breeding_data:
+#     available_offspring:
+#       - pet_data: {}
+#         ready_timestamp: timestamp
+#     breeding_cooldowns:
+#       last_breeding: timestamp
+#   competition_data:
+#     daily_participations: 3
+#     weekly_wins: 2
+#     total_competitions: 45
+#     best_times:
+#       pet_races: 120.5  # segundos
+#       obstacle_challenge: 85.2
+#   achievements:
+#     - "first_pet"
+#     - "level_50_pet"
+#     - "competition_winner"
+#     - "master_breeder"
+
+# ===========================================
+# CONFIGURACIÓN DE INTEGRACIÓN
+# ===========================================
+integrations:
+  # Integración con economía
+  economy:
+    enable: true
+    daily_pet_allowance: 50.0
+    care_bonus_multiplier: 1.2
+    
+  # Integración con habilidades
+  skills:
+    enable: true
+    pet_skill_bonuses:
+      animal_handling:
+        level_10: "faster_training"
+        level_25: "better_genetics"
+        level_50: "mutation_boost"
+        
+  # Integración con facciones
+  factions:
+    enable: true
+    faction_pet_bonuses: true
+    shared_pet_care: true
+    
+# ===========================================
+# CONFIGURACIÓN AVANZADA
+# ===========================================
+advanced_settings:
+  # Configuración de rendimiento
+  performance:
+    max_active_pets_per_chunk: 10
+    pet_ai_update_interval: 20  # ticks
+    async_data_saving: true
+    
+  # Configuración de mundo
+  world_settings:
+    enabled_worlds:
+      - "world"
+      - "world_nether"
+    disabled_worlds:
+      - "world_the_end"
+    world_specific_bonuses:
+      world_nether:
+        fire_resistance: true
+        speed_bonus: 1.2
+        
+  # Sistema de backup
+  backup_system:
+    enable: true
+    backup_interval: 3600  # 1 hora
+    max_backups: 24
+    
+  # Configuración de eventos
+  event_system:
+    seasonal_events: true
+    holiday_bonuses: true
+    special_pet_spawns: true

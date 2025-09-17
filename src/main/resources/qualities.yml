@@ -1,0 +1,445 @@
+# Sistema completo de calidad de items - MKSurvival
+
+# ===========================================
+# CONFIGURACIÓN DEL SISTEMA DE CALIDAD
+# ===========================================
+quality_system:
+  enable: true
+  
+  # Configuración global
+  global_settings:
+    quality_drop_chance: 0.15  # 15% chance base
+    quality_upgrade_chance: 0.05  # 5% chance de upgrade
+    max_quality_level: 6
+    
+  # Factores que afectan la calidad
+  quality_factors:
+    player_level_bonus: 0.001  # 0.1% por nivel
+    skill_level_bonus: 0.002   # 0.2% por nivel de habilidad
+    luck_enchantment_bonus: 0.05  # 5% por nivel de suerte
+    full_moon_bonus: 0.1  # 10% durante luna llena
+    
+# ===========================================
+# NIVELES DE CALIDAD
+# ===========================================
+quality_levels:
+  # CALIDAD BAJA
+  poor:
+    id: 0
+    name: "Deficiente"
+    display_name: "<dark_gray>Deficiente</dark_gray>"
+    color: "<dark_gray>"
+    prefix: "<dark_gray>[Deficiente]</dark_gray>"
+    rarity: 0.05  # 5% de probabilidad
+    
+    # Modificadores negativos
+    modifiers:
+      durability_multiplier: 0.7  # 30% menos durabilidad
+      damage_multiplier: 0.85     # 15% menos daño
+      efficiency_multiplier: 0.8  # 20% menos eficiencia
+      
+    # Efectos visuales
+    visual_effects:
+      particle: "SMOKE"
+      glint: false
+      
+  # CALIDAD ESTÁNDAR
+  common:
+    id: 1
+    name: "Común"
+    display_name: "<white>Común</white>"
+    color: "<white>"
+    prefix: "<white>[Común]</white>"
+    rarity: 0.5  # 50% de probabilidad
+    
+    # Sin modificadores (valores base)
+    modifiers:
+      durability_multiplier: 1.0
+      damage_multiplier: 1.0
+      efficiency_multiplier: 1.0
+      
+    visual_effects:
+      particle: "ENCHANT"
+      glint: false
+      
+  # CALIDAD MEJORADA
+  uncommon:
+    id: 2
+    name: "Poco Común"
+    display_name: "<green>Poco Común</green>"
+    color: "<green>"
+    prefix: "<green>[Poco Común]</green>"
+    rarity: 0.25  # 25% de probabilidad
+    
+    modifiers:
+      durability_multiplier: 1.2  # 20% más durabilidad
+      damage_multiplier: 1.1      # 10% más daño
+      efficiency_multiplier: 1.15 # 15% más eficiencia
+      
+    # Bonus especiales
+    special_bonuses:
+      repair_bonus: 0.1  # 10% más eficiente al reparar
+      
+    visual_effects:
+      particle: "HAPPY_VILLAGER"
+      glint: false
+      
+  # CALIDAD RARA
+  rare:
+    id: 3
+    name: "Raro"
+    display_name: "<blue>Raro</blue>"
+    color: "<blue>"
+    prefix: "<blue>[Raro]</blue>"
+    rarity: 0.15  # 15% de probabilidad
+    
+    modifiers:
+      durability_multiplier: 1.5
+      damage_multiplier: 1.25
+      efficiency_multiplier: 1.3
+      
+    special_bonuses:
+      critical_chance: 0.05  # 5% chance de crítico
+      double_drop_chance: 0.1  # 10% chance de doble drop
+      
+    # Encantamientos automáticos
+    auto_enchantments:
+      weapons:
+        - "SHARPNESS:1"
+      tools:
+        - "EFFICIENCY:1"
+      armor:
+        - "PROTECTION:1"
+        
+    visual_effects:
+      particle: "ENCHANT"
+      glint: true
+      
+  # CALIDAD ÉPICA
+  epic:
+    id: 4
+    name: "Épico"
+    display_name: "<dark_purple>Épico</dark_purple>"
+    color: "<dark_purple>"
+    prefix: "<dark_purple>[Épico]</dark_purple>"
+    rarity: 0.08  # 8% de probabilidad
+    
+    modifiers:
+      durability_multiplier: 2.0
+      damage_multiplier: 1.5
+      efficiency_multiplier: 1.6
+      
+    special_bonuses:
+      critical_chance: 0.1
+      critical_damage: 1.5
+      double_drop_chance: 0.15
+      triple_drop_chance: 0.05
+      
+    auto_enchantments:
+      weapons:
+        - "SHARPNESS:2"
+        - "UNBREAKING:1"
+      tools:
+        - "EFFICIENCY:2"
+        - "UNBREAKING:1"
+      armor:
+        - "PROTECTION:2"
+        - "UNBREAKING:1"
+        
+    # Habilidades especiales
+    special_abilities:
+      weapons:
+        - "life_steal:0.05"  # 5% de robo de vida
+      tools:
+        - "auto_smelt:0.2"   # 20% chance de auto-fundido
+      armor:
+        - "damage_reflection:0.1"  # 10% reflexión de daño
+        
+    visual_effects:
+      particle: "PORTAL"
+      glint: true
+      
+  # CALIDAD LEGENDARIA
+  legendary:
+    id: 5
+    name: "Legendario"
+    display_name: "<gold>Legendario</gold>"
+    color: "<gold>"
+    prefix: "<gold>[Legendario]</gold>"
+    rarity: 0.02  # 2% de probabilidad
+    
+    modifiers:
+      durability_multiplier: 3.0
+      damage_multiplier: 2.0
+      efficiency_multiplier: 2.5
+      
+    special_bonuses:
+      critical_chance: 0.2
+      critical_damage: 2.0
+      double_drop_chance: 0.25
+      triple_drop_chance: 0.1
+      quadruple_drop_chance: 0.02
+      
+    auto_enchantments:
+      weapons:
+        - "SHARPNESS:3"
+        - "UNBREAKING:2"
+        - "LOOTING:1"
+      tools:
+        - "EFFICIENCY:3"
+        - "UNBREAKING:2"
+        - "FORTUNE:1"
+      armor:
+        - "PROTECTION:3"
+        - "UNBREAKING:2"
+        
+    special_abilities:
+      weapons:
+        - "life_steal:0.1"
+        - "fire_aspect:1"
+      tools:
+        - "auto_smelt:0.4"
+        - "vein_miner:3"  # Mina 3 bloques conectados
+      armor:
+        - "damage_reflection:0.2"
+        - "regeneration:0.05"  # Regeneración lenta
+        
+    visual_effects:
+      particle: "END_ROD"
+      glint: true
+      custom_glow: true
+      
+  # CALIDAD MITOLÓGICA
+  mythical:
+    id: 6
+    name: "Mitológico"
+    display_name: "<rainbow>Mitológico</rainbow>"
+    color: "<rainbow>"
+    prefix: "<rainbow>[Mitológico]</rainbow>"
+    rarity: 0.005  # 0.5% de probabilidad
+    
+    modifiers:
+      durability_multiplier: 5.0  # Prácticamente indestructible
+      damage_multiplier: 3.0
+      efficiency_multiplier: 4.0
+      
+    special_bonuses:
+      critical_chance: 0.3
+      critical_damage: 3.0
+      double_drop_chance: 0.5
+      triple_drop_chance: 0.2
+      quintuple_drop_chance: 0.05
+      
+    auto_enchantments:
+      weapons:
+        - "SHARPNESS:5"
+        - "UNBREAKING:3"
+        - "LOOTING:3"
+        - "FIRE_ASPECT:2"
+      tools:
+        - "EFFICIENCY:5"
+        - "UNBREAKING:3"
+        - "FORTUNE:3"
+        - "SILK_TOUCH:1"
+      armor:
+        - "PROTECTION:4"
+        - "UNBREAKING:3"
+        - "THORNS:3"
+        
+    special_abilities:
+      weapons:
+        - "life_steal:0.2"
+        - "soul_harvest:0.1"  # Obtiene almas de enemigos
+        - "elemental_damage:0.3"  # Daño elemental
+      tools:
+        - "auto_smelt:1.0"  # Siempre auto-funde
+        - "vein_miner:9"  # Mina 9 bloques conectados
+        - "infinite_durability:0.8"  # 80% chance de no perder durabilidad
+      armor:
+        - "damage_reflection:0.4"
+        - "regeneration:0.1"
+        - "flight:temporary"  # Vuelo temporal al recibir daño
+        
+    visual_effects:
+      particle: "DRAGON_BREATH"
+      glint: true
+      custom_glow: true
+      aura: true
+      
+# ===========================================
+# APLICACIÓN POR TIPO DE ITEM
+# ===========================================
+item_types:
+  # ARMAS
+  weapons:
+    applicable_items:
+      - "SWORD"
+      - "AXE"
+      - "BOW"
+      - "CROSSBOW"
+      - "TRIDENT"
+      
+    affected_stats:
+      - "damage"
+      - "durability"
+      - "attack_speed"
+      
+    special_effects:
+      - "critical_hits"
+      - "life_steal"
+      - "elemental_damage"
+      
+  # HERRAMIENTAS
+  tools:
+    applicable_items:
+      - "PICKAXE"
+      - "SHOVEL"
+      - "HOE"
+      - "SHEARS"
+      - "FISHING_ROD"
+      
+    affected_stats:
+      - "efficiency"
+      - "durability"
+      - "mining_speed"
+      
+    special_effects:
+      - "auto_smelt"
+      - "vein_mining"
+      - "fortune_bonus"
+      
+  # ARMADURAS
+  armor:
+    applicable_items:
+      - "HELMET"
+      - "CHESTPLATE"
+      - "LEGGINGS"
+      - "BOOTS"
+      - "SHIELD"
+      
+    affected_stats:
+      - "defense"
+      - "durability"
+      - "toughness"
+      
+    special_effects:
+      - "damage_reflection"
+      - "regeneration"
+      - "elemental_resistance"
+      
+  # CONSUMIBLES
+  consumables:
+    applicable_items:
+      - "POTION"
+      - "FOOD"
+      - "GOLDEN_APPLE"
+      
+    affected_stats:
+      - "effect_duration"
+      - "effect_potency"
+      - "saturation"
+      
+    special_effects:
+      - "enhanced_effects"
+      - "bonus_nutrition"
+      
+# ===========================================
+# SISTEMA DE MEJORA DE CALIDAD
+# ===========================================
+quality_upgrade:
+  enable: true
+  
+  # Métodos de mejora
+  upgrade_methods:
+    enchanting:
+      enable: true
+      base_chance: 0.1  # 10% chance base
+      cost_multiplier: 2.0
+      
+    crafting:
+      enable: true
+      requires_special_materials: true
+      special_materials:
+        uncommon: ["LAPIS_LAZULI:5"]
+        rare: ["EMERALD:3"]
+        epic: ["DIAMOND:2"]
+        legendary: ["NETHERITE_INGOT:1"]
+        mythical: ["NETHER_STAR:1"]
+        
+    ritual:
+      enable: true
+      requires_altar: true
+      success_chance: 0.05  # 5% chance
+      failure_penalty: "downgrade"  # Puede bajar de calidad
+      
+# ===========================================
+# CONFIGURACIÓN DE INTERFAZ
+# ===========================================
+ui_configuration:
+  # Configuración de tooltips
+  tooltips:
+    show_quality_level: true
+    show_modifiers: true
+    show_special_abilities: true
+    detailed_stats: true
+    
+  # Formato de nombres
+  naming_format:
+    prefix_before_name: true
+    quality_color_name: true
+    show_level_number: false
+    
+  # Efectos visuales
+  visual_indicators:
+    item_glow: true
+    particle_effects: true
+    custom_textures: false  # Requiere resource pack
+    
+# ===========================================
+# INTEGRACIÓN CON OTROS SISTEMAS
+# ===========================================
+system_integration:
+  # Integración con economía
+  economy:
+    quality_affects_value: true
+    value_multipliers:
+      poor: 0.5
+      common: 1.0
+      uncommon: 1.5
+      rare: 2.5
+      epic: 5.0
+      legendary: 10.0
+      mythical: 25.0
+      
+  # Integración con skills
+  skills:
+    skill_bonus_quality: true
+    bonus_per_level: 0.001  # 0.1% por nivel
+    
+  # Integración con crafting
+  crafting:
+    quality_inheritance: true
+    ingredient_quality_average: true
+    master_crafter_bonus: 0.05
+    
+# ===========================================
+# CONFIGURACIÓN AVANZADA
+# ===========================================
+advanced_settings:
+  # Configuración de balance
+  balance:
+    prevent_quality_stacking: true
+    max_enchantment_bonus: 5
+    diminishing_returns: true
+    
+  # Configuración de rareza
+  rarity_balancing:
+    adjust_by_server_age: true
+    veteran_player_bonus: true
+    event_quality_boost: 2.0
+    
+  # Configuración de almacenamiento
+  storage:
+    save_quality_history: true
+    track_upgrades: true
+    backup_items: true
